@@ -1,0 +1,76 @@
+<div class="wrapper" style="overflow-y: hidden;">
+
+    <!--search-sec end-->
+    <div id="popup" class="widget-box">
+
+        <!-- WIDGET BOX TITLE -->
+        <a (click)="toggleFilter()" [routerLink]="">
+            <p class="widget-box-title large">Filters</p>
+        </a>
+        <!-- /WIDGET BOX TITLE -->
+
+        <!-- WIDGET BOX CONTENT -->
+        <div class="widget-box-content">
+            <div class="post-project">
+                <div *ngIf="showFilters" class="post-project-fields">
+                    <div class="filter-secs">
+                        <!--filter-heading end-->
+                        <div class="paddy" style="width: 100%;">
+                            <div class="filter-dd">
+                                <ul class="avail-checks">
+                                    <li>
+                                        <p class="widget-box-title">Posts</p>
+                                        <input (change)="togglePosts()" type="checkbox" [(ngModel)]="showPosts"
+                                            name="c1" id="c1">
+                                        <label for="c1">
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <p class="widget-box-title">Events</p>
+                                        <input (change)="toggleEvents()" type="checkbox" [(ngModel)]="showEvents"
+                                            name="c2" id="c2">
+                                        <label for="c2">
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <p class="widget-box-title">Homes</p>
+                                        <input (change)="toggleHomes()" type="checkbox" [(ngModel)]="showHomes"
+                                            name="c3" id="c3">
+                                        <label for="c3">
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="filter-dd">
+                                <ul class="avail-checks">
+                                    <li>
+                                        <p class="widget-box-title">Distance radius</p>
+                                        <input (change)="toggleCircle()" type="checkbox" [(ngModel)]="showCircle"
+                                            name="c4" id="c4">
+                                        <label for="c4">
+                                            <span></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div *ngIf="showCircle" class="filter-dd">
+                                <ng5-slider (userChangeEnd)="updateCircle()" [(value)]="circleRadius"
+                                    [options]="options">
+                                </ng5-slider>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--post-project-fields end-->
+            </div>
+            <!--post-project end-->
+        </div>
+        <!-- /WIDGET BOX CONTENT -->
+    </div>
+    <!--search-sec end-->
+    <div class="map-container">
+        <div class="map-frame">
+            <div id="map"></div>
+        </div>
+    </div>
+</div>

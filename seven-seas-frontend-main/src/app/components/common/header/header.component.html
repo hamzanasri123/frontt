@@ -1,0 +1,455 @@
+<!-- HEADER -->
+<header class="header">
+    <!-- HEADER ACTIONS -->
+    <div class="header-actions">
+        <!-- HEADER BRAND -->
+        <a [routerLink]="['/']">
+            <div class="header-brand">
+                <!-- LOGO -->
+                <div class="logo">
+                    <!-- ICON LOGO VIKINGER -->
+                    <img class="icon-logo-vikinger" src="../../../../assets/img/logo-white.png">
+                    <!-- /ICON LOGO VIKINGER -->
+                </div>
+                <!-- /LOGO -->
+
+                <!-- HEADER BRAND TEXT -->
+                <h1 class="header-text">Linkedfishers</h1>
+                <!-- /HEADER BRAND TEXT -->
+            </div>
+        </a>
+        <!-- /HEADER BRAND -->
+    </div>
+    <!-- /HEADER ACTIONS -->
+
+    <!-- HEADER ACTIONS -->
+    <div class="header-actions">
+        <!-- SIDEMENU TRIGGER -->
+        <div class="sidemenu-trigger navigation-widget-trigger">
+            <!-- ICON GRID -->
+            <svg class="icon-grid">
+                <use xlink:href="#svg-grid"></use>
+            </svg>
+            <!-- /ICON GRID -->
+        </div>
+        <!-- /SIDEMENU TRIGGER -->
+
+        <!-- MOBILEMENU TRIGGER -->
+        <div class="mobilemenu-trigger navigation-widget-mobile-trigger">
+            <!-- BURGER ICON -->
+            <div class="burger-icon inverted">
+                <!-- BURGER ICON BAR -->
+                <div class="burger-icon-bar"></div>
+                <!-- /BURGER ICON BAR -->
+
+                <!-- BURGER ICON BAR -->
+                <div class="burger-icon-bar"></div>
+                <!-- /BURGER ICON BAR -->
+
+                <!-- BURGER ICON BAR -->
+                <div class="burger-icon-bar"></div>
+                <!-- /BURGER ICON BAR -->
+            </div>
+            <!-- /BURGER ICON -->
+        </div>
+        <!-- /MOBILEMENU TRIGGER -->
+
+        <!-- NAVIGATION -->
+        <nav class="navigation">
+            <!-- MENU MAIN -->
+            <ul class="menu-main">
+                <!-- MENU MAIN ITEM -->
+                <li class="menu-main-item">
+                    <!-- MENU MAIN ITEM LINK -->
+                    <a class="menu-main-item-link" [routerLink]="['/']">{{'home' | translate}}</a>
+                    <!-- /MENU MAIN ITEM LINK -->
+                </li>
+                <!-- /MENU MAIN ITEM -->
+
+                <!-- MENU MAIN ITEM -->
+                <li class="menu-main-item">
+                    <!-- MENU MAIN ITEM LINK -->
+                    <a class="menu-main-item-link" [routerLink]="['/']">{{'about_us' | translate}}</a>
+                    <!-- /MENU MAIN ITEM LINK -->
+                </li>
+                <!-- /MENU MAIN ITEM -->
+
+                <!-- MENU MAIN ITEM -->
+                <li class="menu-main-item">
+                    <!-- MENU MAIN ITEM LINK -->
+                    <a class="menu-main-item-link" [routerLink]="['/']">{{'rules' | translate}}</a>
+                    <!-- /MENU MAIN ITEM LINK -->
+                </li>
+                <!-- /MENU MAIN ITEM -->
+            </ul>
+            <!-- /MENU MAIN -->
+        </nav>
+        <!-- /NAVIGATION -->
+    </div>
+    <!-- /HEADER ACTIONS -->
+
+    <!-- HEADER ACTIONS -->
+    <div class="header-actions search-bar">
+        <!-- INTERACTIVE INPUT -->
+        <div class="interactive-input dark">
+            <input (keyup)="search()" [(ngModel)]="searchKeyword" type="text" id="search-main" name="search_main"
+                placeholder="Search here for people or groups">
+            <!-- INTERACTIVE INPUT ICON WRAP -->
+            <div class="interactive-input-icon-wrap">
+                <!-- INTERACTIVE INPUT ICON -->
+                <svg class="interactive-input-icon icon-magnifying-glass">
+                    <use xlink:href="#svg-magnifying-glass"></use>
+                </svg>
+                <!-- /INTERACTIVE INPUT ICON -->
+            </div>
+            <!-- /INTERACTIVE INPUT ICON WRAP -->
+
+            <!-- INTERACTIVE INPUT ACTION -->
+            <div class="interactive-input-action">
+                <!-- INTERACTIVE INPUT ACTION ICON -->
+                <svg class="interactive-input-action-icon icon-cross-thin">
+                    <use xlink:href="#svg-cross-thin"></use>
+                </svg>
+                <!-- /INTERACTIVE INPUT ACTION ICON -->
+            </div>
+            <!-- /INTERACTIVE INPUT ACTION -->
+        </div>
+        <!-- /INTERACTIVE INPUT -->
+
+        <!-- DROPDOWN BOX -->
+        <div class="dropdown-box padding-bottom-small header-search-dropdown">
+            <!-- DROPDOWN BOX CATEGORY -->
+            <div class="dropdown-box-category">
+                <!-- DROPDOWN BOX CATEGORY TITLE -->
+                <p class="dropdown-box-category-title">Members</p>
+                <!-- /DROPDOWN BOX CATEGORY TITLE -->
+            </div>
+            <!-- /DROPDOWN BOX CATEGORY -->
+
+            <!-- DROPDOWN BOX LIST -->
+            <div class="dropdown-box-list small no-scroll">
+                <!-- DROPDOWN BOX LIST ITEM -->
+                <a *ngFor="let user of searchedUsers" [routerLink]="['/profile',user?.slug]"
+                    routerLinkActive="router-link-active" class="dropdown-box-list-item">
+                    <!-- USER STATUS -->
+                    <div class="user-status notification">
+                        <!-- USER STATUS AVATAR -->
+                        <div class="user-status-avatar">
+                            <div class="user-avatar small no-outline">
+                                <figure class="picture round liquid small">
+                                    <img class="round" [src]="API+user?.profilePicture" alt="avatar-01">
+                                </figure>
+                            </div>
+                        </div>
+                        <!-- /USER STATUS AVATAR -->
+
+                        <!-- USER STATUS TITLE -->
+                        <p class="user-status-title"><span class="bold">{{user?.fullName}}</span></p>
+                        <!-- /USER STATUS TITLE -->
+
+                        <!-- USER STATUS TEXT -->
+                        <!-- /USER STATUS TEXT -->
+
+                        <!-- USER STATUS ICON -->
+                        <div class="user-status-icon">
+                            <!-- ICON FRIEND -->
+                            <svg class="icon-friend">
+                                <use xlink:href="#svg-friend"></use>
+                            </svg>
+                            <!-- /ICON FRIEND -->
+                        </div>
+                        <!-- /USER STATUS ICON -->
+                    </div>
+                    <!-- /USER STATUS -->
+                </a>
+                <!-- /DROPDOWN BOX LIST ITEM -->
+            </div>
+            <!-- /DROPDOWN BOX LIST -->
+        </div>
+        <!-- /DROPDOWN BOX -->
+    </div>
+    <!-- /HEADER ACTIONS -->
+
+    <!-- HEADER ACTIONS -->
+    <div class="header-actions">
+        <!-- ACTION LIST -->
+        <div class="action-list dark">
+
+            <!-- ACTION LIST ITEM WRAP -->
+            <div class="action-list-item-wrap">
+                <!-- ACTION LIST ITEM -->
+                <div class="action-list-item header-dropdown-trigger">
+                    <!-- ACTION LIST ITEM ICON -->
+                    <svg class="action-list-item-icon icon-friend">
+                        <use xlink:href="#svg-translate"></use>
+                    </svg>
+                    <!-- /ACTION LIST ITEM ICON -->
+                </div>
+                <!-- /ACTION LIST ITEM -->
+
+                <!-- DROPDOWN BOX -->
+                <div class="dropdown-box header-dropdown language">
+                    <!-- DROPDOWN BOX HEADER -->
+                    <div class="dropdown-box-header">
+                        <!-- DROPDOWN BOX HEADER TITLE -->
+                        <p class="dropdown-box-header-title">{{'language' | translate}}</p>
+                        <!-- /DROPDOWN BOX HEADER TITLE -->
+                    </div>
+                    <!-- /DROPDOWN BOX HEADER -->
+
+                    <!-- DROPDOWN BOX LIST -->
+                    <div class="dropdown-box-list" data-simplebar>
+                        <!-- DROPDOWN BOX LIST ITEM -->
+                        <a [routerLink]="" (click)="setLanguage('en')">
+                            <div class="dropdown-box-list-item" [ngClass]="{active: currentUser?.language=='en'}">
+                                <!-- USER STATUS -->
+                                <div class="user-status request">
+                                    <!-- USER STATUS AVATAR -->
+                                    <a class="user-status-avatar" href="profile-timeline.html">
+
+                                        <!-- USER AVATAR -->
+                                        <div class="user-avatar small no-outline">
+                                            <!-- USER AVATAR CONTENT -->
+                                            <div class="user-avatar-content">
+                                                <!-- HEXAGON -->
+                                                <div class="flag" data-src="./assets/img/flag/GB.png">
+                                                </div>
+                                                <!-- /HEXAGON -->
+                                            </div>
+                                            <!-- /USER AVATAR CONTENT -->
+                                            <!-- USER AVATAR PROGRESS -->
+                                            <div [hidden]="currentUser?.language!='en'" class="user-avatar-progress">
+                                                <!-- HEXAGON -->
+                                                <div class="flag-selected"></div>
+                                                <!-- /HEXAGON -->
+                                            </div>
+                                            <!-- /USER AVATAR PROGRESS -->
+                                        </div>
+                                        <!-- /USER AVATAR -->
+
+                                    </a>
+                                    <!-- /USER STATUS AVATAR -->
+
+                                    <!-- USER STATUS TITLE -->
+                                    <p class="user-status-title"><a class="bold">English</a></p>
+                                    <!-- /USER STATUS TITLE -->
+                                </div>
+                                <!-- /USER STATUS -->
+                            </div>
+                        </a>
+                        <br>
+                        <!-- /DROPDOWN BOX LIST ITEM -->
+                        <!-- DROPDOWN BOX LIST ITEM -->
+                        <a [routerLink]="" (click)="setLanguage('fr')">
+                            <div class="dropdown-box-list-item" [ngClass]="{active: currentUser?.language=='fr'}">
+                                <!-- USER STATUS -->
+                                <div class="user-status request">
+                                    <!-- USER STATUS AVATAR -->
+                                    <a class="user-status-avatar" href="profile-timeline.html">
+
+                                        <!-- USER AVATAR -->
+                                        <div class="user-avatar small no-outline">
+                                            <!-- USER AVATAR CONTENT -->
+                                            <div class="user-avatar-content">
+                                                <!-- HEXAGON -->
+                                                <div class="flag" data-src="./assets/img/flag/FR.png">
+                                                </div>
+                                                <!-- /HEXAGON -->
+                                            </div>
+                                            <!-- /USER AVATAR CONTENT -->
+                                            <!-- USER AVATAR PROGRESS -->
+                                            <div [hidden]="currentUser?.language!='fr'" class="user-avatar-progress">
+                                                <!-- HEXAGON -->
+                                                <div class="flag-selected"></div>
+                                                <!-- /HEXAGON -->
+                                            </div>
+                                            <!-- /USER AVATAR PROGRESS -->
+                                        </div>
+                                        <!-- /USER AVATAR -->
+                                    </a>
+                                    <!-- /USER STATUS AVATAR -->
+
+                                    <!-- USER STATUS TITLE -->
+                                    <p class="user-status-title"><a class="bold">Français</a></p>
+                                    <!-- /USER STATUS TITLE -->
+                                </div>
+                                <!-- /USER STATUS -->
+                            </div>
+                        </a>
+                        <!-- /DROPDOWN BOX LIST ITEM -->
+                    </div>
+                    <!-- /DROPDOWN BOX LIST -->
+                </div>
+                <!-- /DROPDOWN BOX -->
+            </div>
+            <!-- /ACTION LIST ITEM WRAP -->
+
+
+            <!-- ACTION LIST ITEM WRAP -->
+            <div class="action-list-item-wrap">
+                <!-- ACTION LIST ITEM -->
+                <div [ngClass]="{unread: notifications?.length}" class="action-list-item header-dropdown-trigger">
+                    <!-- ACTION LIST ITEM ICON -->
+                    <svg class="action-list-item-icon icon-notification">
+                        <use xlink:href="#svg-notification"></use>
+                    </svg>
+                    <!-- /ACTION LIST ITEM ICON -->
+                </div>
+                <!-- /ACTION LIST ITEM -->
+
+                <!-- DROPDOWN BOX -->
+                <div class="dropdown-box header-dropdown">
+                    <!-- DROPDOWN BOX HEADER -->
+                    <div class="dropdown-box-header">
+                        <!-- DROPDOWN BOX HEADER TITLE -->
+                        <p class="dropdown-box-header-title">Notifications</p>
+                        <!-- /DROPDOWN BOX HEADER TITLE -->
+
+                        <!-- DROPDOWN BOX HEADER ACTIONS -->
+                        <div class="dropdown-box-header-actions">
+                            <!-- DROPDOWN BOX HEADER ACTION -->
+                            <p class="dropdown-box-header-action">Mark all as Read</p>
+                            <!-- /DROPDOWN BOX HEADER ACTION -->
+                        </div>
+                        <!-- /DROPDOWN BOX HEADER ACTIONS -->
+                    </div>
+                    <!-- /DROPDOWN BOX HEADER -->
+
+                    <!-- DROPDOWN BOX LIST -->
+                    <div class="dropdown-box-list" data-simplebar>
+                        <!-- DROPDOWN BOX LIST ITEM -->
+                        <div *ngFor="let notification of notifications ; let i=index"
+                            class="dropdown-box-list-item unread">
+                            <!-- USER STATUS -->
+                            <div class="user-status notification">
+                                <!-- USER STATUS AVATAR -->
+                                <div class="user-status-avatar">
+                                    <div class="user-avatar small no-outline">
+                                        <figure>
+                                            <img class="round" [src]="API+notification?.sender?.profilePicture"
+                                                alt="avatar-01">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <!-- /USER STATUS AVATAR -->
+
+
+                                <!-- USER STATUS TITLE -->
+                                <p class="user-status-title">
+                                    <a [routerLink]="['/profile',notification.sender.slug]" class="bold">
+                                        {{notification?.sender?.fullName}}
+                                    </a>
+                                    <a (click)="goToNotification(i)" [routerLink]="">{{notification?.type |
+                                        translate}}</a>
+                                </p>
+                                <!-- /USER STATUS TITLE -->
+
+                                <!-- USER STATUS TIMESTAMP -->
+                                <p class="user-status-timestamp">{{notification?.createdAt | timeAgo : language}}</p>
+                                <!-- /USER STATUS TIMESTAMP -->
+
+                                <!-- USER STATUS ICON -->
+                                <div [hidden]="notification.type!='commented_post'" class="user-status-icon">
+                                    <!-- ICON COMMENT -->
+                                    <svg class="icon-comment">
+                                        <use xlink:href="#svg-comment"></use>
+                                    </svg>
+                                </div>
+
+                                <!-- USER STATUS ICON -->
+                                <div [hidden]="notification.type!='liked_post'" class="user-status-icon">
+                                    <svg class="icon-thumbs-up">
+                                        <use xlink:href="#svg-thumbs-up"></use>
+                                    </svg>
+                                </div>
+                                <!-- USER STATUS ICON -->
+                                <div [hidden]="notification.type!='followed_you'" class="user-status-icon">
+                                    <svg class="icon-thumbs-up">
+                                        <use xlink:href="#svg-add-friend"></use>
+                                    </svg>
+                                </div>
+                                <!-- /USER STATUS ICON -->
+
+                            </div>
+                            <!-- /USER STATUS -->
+                        </div>
+                        <!-- /DROPDOWN BOX LIST ITEM -->
+                    </div>
+                    <!-- /DROPDOWN BOX LIST -->
+
+                    <!-- DROPDOWN BOX BUTTON -->
+                    <a class="dropdown-box-button secondary" [routerLink]="['/notifications']">View all
+                        Notifications</a>
+                    <!-- /DROPDOWN BOX BUTTON -->
+                </div>
+                <!-- /DROPDOWN BOX -->
+            </div>
+            <!-- /ACTION LIST ITEM WRAP -->
+        </div>
+        <!-- /ACTION LIST -->
+
+        <!-- ACTION ITEM WRAP -->
+        <div class="action-item-wrap">
+            <!-- ACTION ITEM -->
+            <div class="action-item dark header-settings-dropdown-trigger">
+                <!-- ACTION ITEM ICON -->
+                <svg class="action-item-icon icon-settings">
+                    <use xlink:href="#svg-settings"></use>
+                </svg>
+                <!-- /ACTION ITEM ICON -->
+            </div>
+            <!-- /ACTION ITEM -->
+
+            <!-- DROPDOWN NAVIGATION -->
+            <div class="dropdown-navigation header-settings-dropdown">
+                <!-- DROPDOWN NAVIGATION HEADER -->
+                <div class="dropdown-navigation-header">
+                    <!-- USER STATUS -->
+                    <div class="user-status">
+                        <!-- USER STATUS AVATAR -->
+                        <div class="user-status-avatar">
+                            <div class="user-avatar small no-outline">
+                                <figure>
+                                    <img [src]="API+currentUser?.profilePicture" alt="avatar-01">
+                                </figure>
+                            </div>
+                        </div>
+                        <!-- /USER STATUS AVATAR -->
+
+                        <!-- USER STATUS TITLE -->
+                        <p class="user-status-title"><span class="bold">Hi {{firstname}}!</span></p>
+                        <!-- /USER STATUS TITLE -->
+                    </div>
+                    <!-- /USER STATUS -->
+                </div>
+                <!-- /DROPDOWN NAVIGATION HEADER -->
+
+                <!-- DROPDOWN NAVIGATION CATEGORY -->
+                <p class="dropdown-navigation-category">Account</p>
+                <!-- /DROPDOWN NAVIGATION CATEGORY -->
+
+                <!-- DROPDOWN NAVIGATION LINK -->
+                <a class="dropdown-navigation-link" [routerLink]="['/settings']">Account Info</a>
+                <!-- /DROPDOWN NAVIGATION LINK -->
+
+                <!-- DROPDOWN NAVIGATION LINK -->
+                <a class="dropdown-navigation-link" [routerLink]="['/settings/change-password']">Change Password</a>
+                <!-- /DROPDOWN NAVIGATION LINK -->
+
+                <!-- DROPDOWN NAVIGATION LINK -->
+                <a class="dropdown-navigation-link" [routerLink]="['/settings/social']">Social links</a>
+                <!-- /DROPDOWN NAVIGATION LINK -->
+
+                <!-- DROPDOWN NAVIGATION BUTTON -->
+                <a (click)="logout()" [routerLink]="">
+                    <p class="dropdown-navigation-button button small secondary">Logout</p>
+                </a>
+                <!-- /DROPDOWN NAVIGATION BUTTON -->
+            </div>
+            <!-- /DROPDOWN NAVIGATION -->
+        </div>
+        <!-- /ACTION ITEM WRAP -->
+    </div>
+    <!-- /HEADER ACTIONS -->
+</header>
+<!-- /HEADER -->

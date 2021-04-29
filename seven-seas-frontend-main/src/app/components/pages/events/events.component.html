@@ -1,0 +1,505 @@
+<!-- CONTENT GRID -->
+<div class="content-grid">
+    <!-- SECTION BANNER -->
+    <div class="section-banner">
+        <!-- SECTION BANNER ICON -->
+        <img class="section-banner-icon" src="../../../../assets/img/banner/events-icon.png" alt="events-icon">
+        <!-- /SECTION BANNER ICON -->
+
+        <!-- SECTION BANNER TITLE -->
+        <p class="section-banner-title">Events</p>
+        <!-- /SECTION BANNER TITLE -->
+
+        <!-- SECTION BANNER TEXT -->
+        <p class="section-banner-text">Easily manage and create events or reminders!</p>
+        <!-- /SECTION BANNER TEXT -->
+    </div>
+    <!-- /SECTION BANNER -->
+
+    <!-- SECTION HEADER -->
+    <div class="section-header">
+        <!-- SECTION HEADER INFO -->
+        <div class="section-header-info">
+            <!-- SECTION PRETITLE -->
+            <p class="section-pretitle">Get a quick look!</p>
+            <!-- /SECTION PRETITLE -->
+
+            <!-- SECTION TITLE -->
+            <h2 class="section-title">Events Calendar</h2>
+            <!-- /SECTION TITLE -->
+        </div>
+        <!-- /SECTION HEADER INFO -->
+    </div>
+    <!-- /SECTION HEADER -->
+   
+    <!-- SECTION FILTERS BAR -->
+    <div class="section-filters-bar v6">
+
+        <!-- SECTION FILTERS BAR ACTIONS -->
+        <div class="section-filters-bar-actions">
+            <!-- BUTTON -->
+            <p class="button secondary popup-event-creation-trigger">+ Add New Event</p>
+            <p style="display: none;" id="eventInformationTrigger" class="popup-event-information-trigger"></p>
+
+            <!-- /BUTTON -->
+        </div>
+        <!-- /SECTION FILTERS BAR ACTIONS -->
+    </div>
+    <!-- /SECTION FILTERS BAR -->
+
+    <!-- CALENDAR WIDGET -->
+    <div class="calendar-widget">
+        <!-- CALENDAR WIDGET HEADER -->
+        <div class="calendar-widget-header">
+            <!-- CALENDAR WIDGET HEADER ACTIONS -->
+            <div class="calendar-widget-header-actions">
+                <!-- SLIDER CONTROLS -->
+                <div class="slider-controls">
+                    <!-- SLIDER CONTROL -->
+                    <a [routerLink]="" (click)="incrementMonth(-1)">
+                        <div class="slider-control left">
+                            <!-- SLIDER CONTROL ICON -->
+                            <svg class="slider-control-icon icon-big-arrow">
+                                <use xlink:href="#svg-big-arrow"></use>
+                            </svg>
+                            <!-- /SLIDER CONTROL ICON -->
+                        </div>
+                    </a>
+                    <!-- /SLIDER CONTROL -->
+
+                    <!-- SLIDER CONTROL -->
+                    <a [routerLink]="" (click)="incrementMonth(1)">
+                        <div class="slider-control right">
+                            <!-- SLIDER CONTROL ICON -->
+                            <svg class="slider-control-icon icon-big-arrow">
+                                <use xlink:href="#svg-big-arrow"></use>
+                            </svg>
+                            <!-- /SLIDER CONTROL ICON -->
+                        </div>
+                    </a>
+                    <!-- /SLIDER CONTROL -->
+                </div>
+                <!-- /SLIDER CONTROLS -->
+
+                <!-- CALENDAR WIDGET TITLE -->
+                <p class="calendar-widget-title">{{viewDate | date :'LLLL yyyy'}}</p>
+                <!-- /CALENDAR WIDGET TITLE -->
+            </div>
+            <!-- /CALENDAR WIDGET HEADER ACTIONS -->
+
+            <!-- CALENDAR WIDGET HEADER ACTIONS -->
+            <div class="calendar-widget-header-actions">
+                <!-- VIEW ACTIONS -->
+                <div class="view-actions">
+                    <!-- VIEW ACTION -->
+                    <a class="view-action text-tooltip-tft-medium active" [routerLink]=""
+                        routerLinkActive="router-link-active" data-title="Monthly">
+                        <!-- VIEW ACTION ICON -->
+                        <svg class="view-action-icon icon-events-monthly">
+                            <use xlink:href="#svg-events-monthly"></use>
+                        </svg>
+                        <!-- /VIEW ACTION ICON -->
+                    </a>
+                    <!-- /VIEW ACTION -->
+
+                    <!-- VIEW ACTION -->
+                    <a class="view-action text-tooltip-tft-medium" [routerLink]="" data-title="Weekly">
+                        <!-- VIEW ACTION ICON -->
+                        <svg class="view-action-icon icon-events-weekly">
+                            <use xlink:href="#svg-events-weekly"></use>
+                        </svg>
+                        <!-- /VIEW ACTION ICON -->
+                    </a>
+                    <!-- /VIEW ACTION -->
+
+                    <!-- VIEW ACTION -->
+                    <a class="view-action text-tooltip-tft-medium" [routerLink]="" data-title="Daily">
+                        <!-- VIEW ACTION ICON -->
+                        <svg class="view-action-icon icon-events-daily">
+                            <use xlink:href="#svg-events-daily"></use>
+                        </svg>
+                        <!-- /VIEW ACTION ICON -->
+                    </a>
+                    <!-- /VIEW ACTION -->
+                </div>
+                <!-- /VIEW ACTIONS -->
+            </div>
+            <!-- /CALENDAR WIDGET HEADER ACTIONS -->
+        </div>
+        <!-- /CALENDAR WIDGET HEADER -->
+
+        <!-- CALENDAR -->
+        <div class="calendar full">
+            <!-- CALENDAR WEEK -->
+            <mwl-calendar-month-view [(viewDate)]="viewDate" [events]="calendarEvents" [refresh]="refresh"
+                [activeDayIsOpen]="false" (dayClicked)="dayClicked($event.day)">
+            </mwl-calendar-month-view>
+        </div>
+        <!-- /CALENDAR -->
+
+        <!-- CALENDAR EVENTS PREVIEW -->
+        <div class="calendar-events-preview">
+            <!-- CALENDAR EVENTS PREVIEW TITLE -->
+            <p class="calendar-events-preview-title">{{viewDate | date : 'EEEE' | translate}} , {{viewDate | date :
+                'mediumDate'}}</p>
+            <!-- /CALENDAR EVENTS PREVIEW TITLE -->
+
+            <!-- CALENDAR EVENT PREVIEW LIST -->
+            <div class="calendar-event-preview-list">
+                <!-- CALENDAR EVENT PREVIEW -->
+                <div *ngFor="let event of todayEvents" class="calendar-event-preview secondary">
+                    <!-- CALENDAR EVENT PREVIEW START TIME -->
+                    <div class="calendar-event-preview-start-time">
+                        <!-- CALENDAR EVENT PREVIEW START TIME TITLE -->
+                        <p class="calendar-event-preview-start-time-title">{{event?.startDate | date : 'h:mm'}}</p>
+                        <!-- /CALENDAR EVENT PREVIEW START TIME TITLE -->
+
+                        <!-- CALENDAR EVENT PREVIEW START TIME TEXT -->
+                        <p class="calendar-event-preview-start-time-text">{{event?.startDate | date : 'a'}}</p>
+                        <!-- /CALENDAR EVENT PREVIEW START TIME TEXT -->
+                    </div>
+                    <!-- /CALENDAR EVENT PREVIEW START TIME -->
+
+                    <!-- CALENDAR EVENT PREVIEW INFO -->
+                    <div class="calendar-event-preview-info">
+                        <!-- CALENDAR EVENT PREVIEW TITLE -->
+                        <p (click)="showEvent(event)"
+                            class="calendar-event-preview-title popup-event-information-trigger">{{event?.name}}</p>
+                        <!-- /CALENDAR EVENT PREVIEW TITLE -->
+
+                        <!-- CALENDAR EVENT PREVIEW TEXT -->
+                        <p class="calendar-event-preview-text">{{event?.description}}</p>
+                        <!-- /CALENDAR EVENT PREVIEW TEXT -->
+                    </div>
+                    <!-- /CALENDAR EVENT PREVIEW INFO -->
+                </div>
+                <!-- /CALENDAR EVENT PREVIEW -->
+            </div>
+            <!-- /CALENDAR EVENT PREVIEW LIST -->
+        </div>
+        <!-- /CALENDAR EVENTS PREVIEW -->
+    </div>
+    <!-- /CALENDAR WIDGET -->
+
+    <!-- SECTION HEADER -->
+    <div class="section-header">
+        <!-- SECTION HEADER INFO -->
+        <div class="section-header-info">
+            <!-- SECTION PRETITLE -->
+            <p class="section-pretitle">See what's next!</p>
+            <!-- /SECTION PRETITLE -->
+
+            <!-- SECTION TITLE -->
+            <h2 class="section-title">Upcoming Events</h2>
+            <!-- /SECTION TITLE -->
+        </div>
+        <!-- /SECTION HEADER INFO -->
+    </div>
+    <!-- /SECTION HEADER -->
+
+    <!-- GRID -->
+    <div class="grid grid-3-3-3-3">
+        <!-- EVENT PREVIEW -->
+        <div *ngFor="let event of upcomingEvents ; let i=index" class="event-preview">
+            <!-- EVENT PREVIEW COVER -->
+            <figure class="event-preview-cover liquid">
+                <img [src]="event.image ? (API + event.image) : '../../../../assets/img/fishing-cover.jpg'">
+            </figure>
+            <!-- /EVENT PREVIEW COVER -->
+
+            <!-- EVENT PREVIEW INFO -->
+            <div class="event-preview-info">
+                <!-- EVENT PREVIEW INFO TOP -->
+                <div class="event-preview-info-top">
+                    <!-- DATE STICKER -->
+                    <div class="date-sticker">
+                        <!-- DATE STICKER DAY -->
+                        <p class="date-sticker-day">{{event?.startDate | date : 'd'}}</p>
+                        <!-- /DATE STICKER DAY -->
+
+                        <!-- DATE STICKER MONTH -->
+                        <p class="date-sticker-month">{{event?.startDate | date : 'LLL'}}</p>
+                        <!-- /DATE STICKER MONTH -->
+                    </div>
+                    <!-- /DATE STICKER -->
+
+                    <!-- EVENT PREVIEW TITLE -->
+                    <p (click)="showEvent(event)" class="event-preview-title popup-event-information-trigger">
+                        {{event?.name}}</p>
+                    <!-- /EVENT PREVIEW TITLE -->
+
+                    <!-- EVENT PREVIEW TIMESTAMP -->
+                    <p class="event-preview-timestamp">
+                        Ends on
+                        <span class="bold">{{event?.endDate | date :'LLL, d'}}</span>
+                    </p>
+                    <!-- /EVENT PREVIEW TIMESTAMP -->
+
+                    <!-- EVENT PREVIEW TEXT -->
+                    <p class="event-preview-text">{{event?.description}}</p>
+                    <!-- /EVENT PREVIEW TEXT (click)="openVerticallyCentered(content,i)" -->
+                    <button (click)="openVerticallyCentered(content,i)" class="btn btn-success">modifier Event</button> <button (click)="onDeleteEvent(i)" class="btn btn-danger">supprimer Event</button>
+                </div>
+                <!-- /EVENT PREVIEW INFO TOP -->
+            </div>
+            <!-- /EVENT PREVIEW INFO -->
+        </div>
+        <!-- /EVENT PREVIEW -->
+    </div>
+    <!-- /GRID -->
+</div>
+<!-- /CONTENT GRID -->
+       
+<!-- POPUP BOX -->
+<div class="popup-box popup-event-creation">
+    <!-- POPUP CLOSE BUTTON -->
+    <div class="popup-close-button popup-event-creation-trigger">
+        <!-- POPUP CLOSE BUTTON ICON -->
+        <svg class="popup-close-button-icon icon-cross">
+            <use xlink:href="#svg-cross"></use>
+        </svg>
+        <!-- /POPUP CLOSE BUTTON ICON -->
+    </div>
+    <!-- /POPUP CLOSE BUTTON -->
+    
+    
+    
+    <!-- POPUP BOX TITLE -->
+    <p class="popup-box-title">+ Add New Event</p>
+    <!-- /POPUP BOX TITLE -->
+
+    <!-- FORM -->
+    <form class="form">
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+            <!-- FORM ITEM -->
+            <div class="form-item">
+                <!-- FORM INPUT -->
+                <div class="form-input small">
+                    <label for="event-name">Event Name</label>
+                    <input [(ngModel)]="newEvent.name" type="text" id="event-name" name="event_name">
+                </div>
+                <!-- /FORM INPUT -->
+            </div>
+            <!-- /FORM ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+            <!-- FORM ITEM -->
+            <div class="form-item">
+                <!-- FORM INPUT DECORATED -->
+                <div class="form-input-decorated">
+                    <!-- FORM INPUT -->
+                    <div class="form-input small active">
+                        <label for="event-date active">Event Date</label>
+                        <input [(ngModel)]="dates" name="eventDates" [owlDateTime]="dateTime" [selectMode]="'range'"
+                            [owlDateTimeTrigger]="dateTime">
+                        <owl-date-time #dateTime></owl-date-time>
+                    </div>
+                    <!-- /FORM INPUT -->
+
+                    <!-- FORM INPUT ICON -->
+                    <svg class="form-input-icon icon-events">
+                        <use xlink:href="#svg-events"></use>
+                    </svg>
+                    <!-- /FORM INPUT ICON -->
+                </div>
+                <!-- /FORM INPUT DECORATED -->
+            </div>
+            <!-- /FORM ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+            <!-- FORM ITEM -->
+            <div class="form-item">
+                <!-- FORM INPUT -->
+                <div class="form-input small">
+                    <label for="event-description">Event Description</label>
+                    <textarea [(ngModel)]="newEvent.description" id="event-description"
+                        name="event_description"></textarea>
+                </div>
+                <!-- /FORM INPUT -->
+            </div>
+            <!-- /FORM ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+            <!-- FORM ITEM -->
+            <div class="form-item">
+                <!-- FORM INPUT DECORATED -->
+                <div class="form-input-decorated">
+                    <!-- FORM INPUT -->
+                    <div class="form-input small">
+                        <label for="event-cover-photo">Event Cover Photo</label>
+                        <input (change)="fileChange($event)" type="file" id="event-cover-photo"
+                            class="event-cover-input" name="event_cover_photo">
+                        <img style="max-height: 100px; width: auto; margin-left: 10px;" *ngIf="imageSrc"
+                            [src]="imageSrc" id="image">
+                    </div>
+                    <!-- /FORM INPUT -->
+
+                    <!-- FORM INPUT ICON -->
+                    <svg class="form-input-icon icon-photos">
+                        <use xlink:href="#svg-photos"></use>
+                    </svg>
+                    <!-- /FORM INPUT ICON -->
+                </div>
+                <!-- /FORM INPUT DECORATED -->
+            </div>
+            <!-- /FORM ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- FORM ROW -->
+        <div class="form-row">
+            <!-- FORM ITEM -->
+            <div class="form-item">
+                <!-- FORM INPUT -->
+                <div class="form-input small mid-textarea">
+                    <app-map-box [(position)]="newEvent.position"></app-map-box>
+                </div>
+                <!-- /FORM INPUT -->
+            </div>
+            <!-- /FORM ITEM -->
+        </div>
+        <!-- /FORM ROW -->
+
+        <!-- POPUP BOX ACTIONS -->
+        <div class="popup-box-actions medium void">
+            <!-- POPUP BOX ACTION -->
+            <button (click)="createEvent()" class="popup-box-action full button secondary">Create Event!</button>
+            <!-- /POPUP BOX ACTION -->
+        </div>
+        <!-- /POPUP BOX ACTIONS -->
+    </form>
+    <!-- /FORM -->
+</div>
+<!-- /POPUP BOX -->
+
+<!-- POPUP EVENT -->
+<div class="popup-event popup-event-information">
+    <!-- POPUP CLOSE BUTTON -->
+    <div class="popup-close-button popup-event-information-trigger">
+        <!-- POPUP CLOSE BUTTON ICON -->
+        <svg class="popup-close-button-icon icon-cross">
+            <use xlink:href="#svg-cross"></use>
+        </svg>
+        <!-- /POPUP CLOSE BUTTON ICON -->
+    </div>
+    <!-- /POPUP CLOSE BUTTON -->
+
+    <!-- POPUP EVENT COVER -->
+    <figure *ngIf="selectedEvent" class="popup-event-cover liquid">
+        <img [src]="selectedEvent?.image ? (API + selectedEvent?.image) : '../../../../assets/img/fishing-cover.jpg'"
+            alt="cover-33">
+    </figure>
+    <!-- /POPUP EVENT COVER -->
+
+    <!-- POPUP EVENT INFO -->
+    <div class="popup-event-info">
+        <!-- POPUP EVENT TITLE -->
+        <p class="popup-event-title">{{selectedEvent?.name}}</p>
+        <!-- /POPUP EVENT TITLE -->
+
+        <!-- DECORATED FEATURE LIST -->
+        <div class="decorated-feature-list">
+            <!-- DECORATED FEATURE -->
+            <div class="decorated-feature">
+                <!-- DECORATED FEATURE ICON -->
+                <svg class="decorated-feature-icon icon-events">
+                    <use xlink:href="#svg-events"></use>
+                </svg>
+                <!-- /DECORATED FEATURE ICON -->
+
+                <!-- DECORATED FEATURE INFO -->
+                <div class="decorated-feature-info">
+                    <!-- DECORATED FEATURE TITLE -->
+                    <p class="decorated-feature-title">
+                        {{selectedEvent?.startDate | date : 'EEEE' | translate}} , {{selectedEvent?.startDate | date :
+                        'mediumDate'}}
+                    </p>
+                    <!-- /DECORATED FEATURE TITLE -->
+
+                    <!-- DECORATED FEATURE TEXT -->
+                    <p class="decorated-feature-text">{{selectedEvent?.startDate | date : 'h:mm a'}}</p>
+                    <!-- /DECORATED FEATURE TEXT -->
+                </div>
+                <!-- /DECORATED FEATURE INFO -->
+            </div>
+            <!-- /DECORATED FEATURE -->
+
+            <!-- DECORATED FEATURE -->
+            <div *ngIf="selectedEvent?.endDate!=selectedEvent?.startDate" class="decorated-feature">
+                <!-- DECORATED FEATURE ICON -->
+                <svg class="decorated-feature-icon icon-ticket">
+                    <use xlink:href="#svg-events"></use>
+                </svg>
+                <!-- /DECORATED FEATURE ICON -->
+
+                <!-- DECORATED FEATURE INFO -->
+                <div class="decorated-feature-info">
+                    <!-- DECORATED FEATURE TITLE -->
+                    <p class="decorated-feature-title">{{selectedEvent?.endDate | date : 'EEEE' | translate}} ,
+                        {{selectedEvent?.endDate | date :
+                        'mediumDate'}}</p>
+                    <!-- /DECORATED FEATURE TITLE -->
+
+                    <!-- DECORATED FEATURE TEXT -->
+                    <p class="decorated-feature-text">{{selectedEvent?.endDate | date : 'h:mm a'}} </p>
+                    <!-- /DECORATED FEATURE TEXT -->
+                </div>
+                <!-- /DECORATED FEATURE INFO -->
+            </div>
+            <!-- /DECORATED FEATURE -->
+        </div>
+        <!-- /DECORATED FEATURE LIST -->
+
+        <!-- POPUP EVENT SUBTITLE -->
+        <p class="popup-event-subtitle">Description</p>
+        <!-- /POPUP EVENT SUBTITLE -->
+
+        <!-- POPUP EVENT TEXT -->
+        <p class="popup-event-text">{{selectedEvent?.description}}</p>
+        <!-- /POPUP EVENT TEXT -->
+
+
+        <!-- POPUP EVENT SUBTITLE -->
+        <p class="popup-event-subtitle">Event location</p>
+        <!-- /POPUP EVENT SUBTITLE -->
+
+        <!-- GOOGLE MAP -->
+        <div *ngIf="selectedEvent" class="event-map">
+            <app-map-box [draggable]="false" [(position)]="selectedEvent.position"></app-map-box>
+        </div>
+        <!-- /GOOGLE MAP -->
+
+    </div>
+    <!-- /POPUP EVENT INFO -->
+</div>
+<!-- /POPUP EVENT -->
+
+ <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Evenement </h4>
+      </div>
+      <div class="modal-body">
+        <input type="text" [(ngModel)]="upcomingEvents[selectedEvents].startDate">
+        <input type="text" [(ngModel)]="upcomingEvents[selectedEvents].endDate">
+        <input type="text" [(ngModel)]="upcomingEvents[selectedEvents].description">
+        <input type="text" [(ngModel)]="upcomingEvents[selectedEvents].name">
+    </div>
+      <div class="modal-footer">
+       
+        <button type="button" (click)="onUpdateEvent()" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template> 
+
+      

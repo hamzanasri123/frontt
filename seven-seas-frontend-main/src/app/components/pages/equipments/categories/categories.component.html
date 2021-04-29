@@ -1,0 +1,49 @@
+<!-- GRID -->
+<div class="grid medium-space">
+    <!-- GRID COLUMN -->
+    <div class="account-hub-content">
+        <!-- SECTION HEADER -->
+        <div class="section-header">
+            <!-- SECTION HEADER INFO -->
+            <div class="section-header-info">
+                <!-- SECTION PRETITLE -->
+                <p class="section-pretitle">Equipments</p>
+                <!-- /SECTION PRETITLE -->
+
+                <!-- SECTION TITLE -->
+                <h2 class="section-title">Equipment categories</h2>
+                <!-- /SECTION TITLE -->
+            </div>
+            <!-- /SECTION HEADER INFO -->
+        </div>
+        <!-- /SECTION HEADER -->
+
+        <!-- GRID -->
+        <div class="grid grid-3-3-3 centered-on-mobile">
+            <!-- PRODUCT PREVIEW -->
+            <div *ngFor="let equipmnentType of equipmentTypes" class="product-preview fixed-height">
+                <!-- PRODUCT PREVIEW IMAGE -->
+                <a [routerLink]="[equipmnentType?._id]">
+                    <figure class="product-preview-image liquid">
+                        <img [src]="API + equipmnentType.icon" alt="item-01">
+                    </figure>
+                </a>
+                <!-- /PRODUCT PREVIEW IMAGE -->
+
+                <!-- PRODUCT PREVIEW INFO -->
+                <div class="product-preview-info">
+                    <!-- PRODUCT PREVIEW TITLE -->
+                    <p class="product-preview-title"><a
+                            [routerLink]="[equipmnentType?._id]">{{equipmnentType?.name}}</a>
+                    </p>
+                    <!-- /PRODUCT PREVIEW TITLE -->
+                </div>
+                <!-- /PRODUCT PREVIEW INFO -->
+            </div>
+            <!-- /PRODUCT PREVIEW -->
+        </div>
+        <!-- /GRID -->
+    </div>
+    <!-- /GRID COLUMN -->
+</div>
+<!-- /GRID -->

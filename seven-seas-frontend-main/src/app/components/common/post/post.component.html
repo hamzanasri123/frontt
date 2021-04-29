@@ -1,0 +1,337 @@
+<ng-container>
+    <!-- WIDGET BOX -->
+    <div class="widget-box no-padding">
+        <!-- WIDGET BOX SETTINGS -->
+        <div class="widget-box-settings">
+            <!-- POST SETTINGS WRAP -->
+            <div class="post-settings-wrap">
+                <!-- POST SETTINGS -->
+                <div class="post-settings widget-box-post-settings-dropdown-trigger">
+                    <!-- POST SETTINGS ICON -->
+                    <svg class="post-settings-icon icon-more-dots">
+                        <use xlink:href="#svg-more-dots"></use>
+                    </svg>
+                    <!-- /POST SETTINGS ICON -->
+                </div>
+                <!-- /POST SETTINGS -->
+
+                <!-- SIMPLE DROPDOWN -->
+                <div class="simple-dropdown widget-box-post-settings-dropdown">
+                    <!-- SIMPLE DROPDOWN LINK -->
+                    <p *ngIf="currentUser?._id!=post?.author?._id" class="simple-dropdown-link">{{'report_post' |
+                        translate}}
+                    </p>
+                    <!-- /SIMPLE DROPDOWN LINK -->
+
+                    <!-- SIMPLE DROPDOWN LINK -->
+                    <p (click)="deletePost()" *ngIf="currentUser?._id==post?.author?._id" class="simple-dropdown-link">{{'delete_post' |
+                        translate}}</p>
+
+                    <!-- /SIMPLE DROPDOWN LINK -->
+                    <!--<p (click)="openVerticallyCentered(content,i)" *ngIf="currentUser?._id==post?.author?._id" class="simple-dropdown-link">{{'modifier publication' |
+                        translate}}</p> -->
+
+                </div>
+                <!-- /SIMPLE DROPDOWN -->
+            </div>
+            <!-- /POST SETTINGS WRAP -->
+        </div>
+        <!-- /WIDGET BOX SETTINGS -->
+
+        <!-- WIDGET BOX STATUS -->
+        <div class="widget-box-status">
+            <!-- WIDGET BOX STATUS CONTENT -->
+            <div class="widget-box-status-content">
+                <!-- USER STATUS -->
+                <div class="user-status">
+                    <!-- USER STATUS AVATAR -->
+                    <a class="user-status-avatar" [routerLink]="['/profile']">
+                        <!-- USER AVATAR -->
+                        <div class="user-avatar small no-outline">
+                            <!-- USER AVATAR CONTENT -->
+                            <figure class="picture round liquid small">
+                                <img class="round" [src]="API+post?.author?.profilePicture" alt="avatar-01">
+                            </figure>
+                        </div>
+                        <!-- /USER AVATAR -->
+                    </a>
+                    <!-- /USER STATUS AVATAR -->
+
+                    <!-- USER STATUS TITLE -->
+                    <p class="user-status-title medium"><a class="bold"
+                            [routerLink]="['/profile/',(post?.author?.slug || post?.author?._id)]">{{post?.author?.fullName}}</a>
+                    </p>
+                    <!-- /USER STATUS TITLE -->
+
+                    <!-- USER STATUS TEXT -->
+                    <p [owlTooltip]="post.createdAt | date : ' MMMM, d, y,  h:mm a'" [owlTooltipPosition]="'left'"
+                        class="user-status-text small">{{post?.createdAt
+                        | timeAgo : language}}</p>
+                    <!-- /USER STATUS TEXT -->
+                </div>
+                <!-- /USER STATUS -->
+
+                <!-- WIDGET BOX STATUS TEXT -->
+                <p [innerHTML]="post?.content | linkify" class="widget-box-status-text"></p>
+                <!-- /WIDGET BOX STATUS TEXT -->
+            </div>
+            <!-- /WIDGET BOX STATUS CONTENT -->
+
+            <!-- IFRAME WRAP -->
+            <div *ngIf="post?.attachmentType==='youtube'" class="iframe-wrap">
+                <iframe [src]='post.attachment' allowfullscreen></iframe>
+            </div>
+            <!-- /IFRAME WRAP -->
+
+            <a *ngIf="post?.attachmentType==='image'" class="video-status" [routerLink]="">
+                <!-- STATUS IMAGE -->
+                <img class="video-status-image" [src]="API + post.attachment" alt="attatchement">
+                <!-- STATUS IMAGE -->
+            </a>
+
+
+            <a *ngIf="post?.attachmentType==='video'" class="video-status" [routerLink]="">
+                <!-- VIDEO STATUS -->
+                <video controls="true" [src]="API + post.attachment"></video>
+                <!-- /VIDEO STATUS -->
+            </a>
+
+            <!-- WIDGET BOX STATUS CONTENT -->
+            <div class="widget-box-status-content">
+                <!-- TAG LIST -->
+                <div class="tag-list">
+                    <!-- TAG ITEM -->
+                    <a *ngFor="let tag of post?.tags" class="tag-item secondary" [routerLink]="">{{tag}}</a>
+                    <!-- /TAG ITEM -->
+                </div>
+                <!-- /TAG LIST -->
+
+                <!-- CONTENT ACTIONS -->
+                <div class="content-actions">
+                    <!-- CONTENT ACTION -->
+                    <div class="content-action">
+                        <!-- META LINE -->
+                        <div class="meta-line">
+                            <!-- META LINE LIST -->
+                            <div class="meta-line-list reaction-item-list">
+                                <!-- REACTION ITEM -->
+                                <div class="reaction-item">
+                                    <!-- REACTION IMAGE -->
+                                    <img class="reaction-image reaction-item-dropdown-trigger"
+                                        src="../../../../assets/img/reaction/like.png" alt="reaction-like">
+                                    <!-- /REACTION IMAGE -->
+
+                                    <!-- SIMPLE DROPDOWN -->
+                                    <div class="simple-dropdown padded reaction-item-dropdown">
+                                        <!-- SIMPLE DROPDOWN TEXT -->
+                                        <p class="simple-dropdown-text"><img class="reaction"
+                                                src="../../../../assets/img/reaction/like.png" alt="reaction-like">
+                                            <span class="bold">Like</span>
+                                        </p>
+                                        <!-- /SIMPLE DROPDOWN TEXT -->
+
+                                        <!-- SIMPLE DROPDOWN TEXT -->
+                                        <p *ngFor="let react of post?.reacts" class="simple-dropdown-text">
+                                            {{react?.author?.fullName}}</p>
+                                        <!-- /SIMPLE DROPDOWN TEXT -->
+                                    </div>
+                                    <!-- /SIMPLE DROPDOWN -->
+                                </div>
+                                <!-- /REACTION ITEM -->
+                            </div>
+                            <!-- /META LINE LIST -->
+
+                            <!-- META LINE TEXT -->
+                            <p *ngIf="post?.reacts" class="meta-line-text">{{post?.reacts.length}}</p>
+                            <!-- /META LINE TEXT -->
+                        </div>
+                        <!-- /META LINE -->
+                    </div>
+                    <!-- /CONTENT ACTION -->
+
+                    <!-- CONTENT ACTION -->
+                    <div (click)="toggleComments()" class="content-action">
+                        <!-- META LINE -->
+                        <div class="meta-line">
+                            <!-- META LINE LINK -->
+                            <p class="meta-line-link"> {{post?.comments || 0 }} Comments</p>
+                            <!-- /META LINE LINK -->
+                        </div>
+                        <!-- /META LINE -->
+                    </div>
+                    <!-- /CONTENT ACTION -->
+                </div>
+                <!-- /CONTENT ACTIONS -->
+            </div>
+            <!-- /WIDGET BOX STATUS CONTENT -->
+        </div>
+        <!-- /WIDGET BOX STATUS -->
+        <!-- /WIDGET BOX STATUS -->
+        <!-- POST OPTIONS -->
+        <div class="post-options">
+            <!-- POST OPTION WRAP -->
+            <div class="post-option-wrap">
+                <!-- POST OPTION -->
+                <div class="post-option reaction-options-dropdown-trigger" [ngClass]="{'post-option-active': reacted}">
+                    <!-- POST OPTION ICON -->
+                    <svg class="post-option-icon icon-thumbs-up" [ngClass]="{'post-option-icon-active': reacted}">
+                        <use xlink:href="#svg-thumbs-up"></use>
+                    </svg>
+                    <!-- /POST OPTION ICON -->
+
+                    <!-- POST OPTION TEXT -->
+                    <p class="post-option-text" [ngClass]="{'post-option-text-active': reacted}">{{ reacted? 'Unlike' :
+                        'Like!'}}</p>
+                    <!-- /POST OPTION TEXT -->
+                </div>
+                <!-- /POST OPTION -->
+
+                <!-- REACTION OPTIONS -->
+                <div class="reaction-options reaction-options-dropdown">
+                    <!-- REACTION OPTION -->
+                    <div *ngIf="!reacted" (click)="reactToPost('like')" class="reaction-option text-tooltip-tft"
+                        data-title="Like">
+                        <!-- REACTION OPTION IMAGE -->
+                        <img class="reaction-option-image" src="../../../../assets/img/reaction/like.png"
+                            alt="reaction-like">
+                        <!-- /REACTION OPTION IMAGE -->
+                    </div>
+                    <!-- /REACTION OPTION -->
+                    <!-- REACTION OPTION -->
+                    <div *ngIf="reacted" (click)="reactToPost('')" class="reaction-option text-tooltip-tft"
+                        data-title="Unlike">
+                        <!-- REACTION OPTION IMAGE -->
+                        <img class="reaction-option-image" src="../../../../assets/img/reaction/dislike.png"
+                            alt="reaction-unlike">
+                        <!-- /REACTION OPTION IMAGE -->
+                    </div>
+                    <!-- /REACTION OPTION -->
+                </div>
+                <!-- /REACTION OPTIONS -->
+            </div>
+            <!-- /POST OPTION WRAP -->
+
+            <!-- POST OPTION -->
+            <div (click)="toggleComments()" class="post-option" [ngClass]="{active: commentsVisible}">
+                <!-- POST OPTION ICON -->
+                <svg class="post-option-icon icon-comment">
+                    <use xlink:href="#svg-comment"></use>
+                </svg>
+                <!-- /POST OPTION ICON -->
+
+                <!-- POST OPTION TEXT -->
+                <p class="post-option-text">Comment</p>
+                <!-- /POST OPTION TEXT -->
+            </div>
+            <!-- /POST OPTION -->
+        </div>
+        <!-- /POST OPTIONS -->
+        <div *ngIf="commentsVisible" class="post-comment-list">
+            <!-- POST COMMENT -->
+            <div *ngFor="let comment of comments" class="post-comment">
+                <!-- USER AVATAR -->
+                <a class="user-avatar small no-outline" [routerLink]="['/profile',comment.author._id]">
+                    <!-- USER AVATAR CONTENT -->
+                    <figure class="picture round liquid small">
+                        <img class="round" [src]="API+comment?.author?.profilePicture" alt="profile picture">
+                    </figure>
+                </a>
+                <!-- /USER AVATAR -->
+
+                <!-- POST COMMENT TEXT -->
+                <p class="post-comment-text"><a class="post-comment-text-author"
+                        [routerLink]="['/profile',comment.author._id]">
+                        {{comment?.author?.fullName}}
+                    </a>{{comment?.content}}</p>
+                <!-- /POST COMMENT TEXT -->
+
+                <!-- CONTENT ACTIONS -->
+                <div class="content-actions">
+                    <!-- CONTENT ACTION -->
+                    <div class="content-action">
+                        <!-- META LINE -->
+                        <div class="meta-line">
+                            <!-- META LINE TIMESTAMP -->
+                            <p [owlTooltip]="comment.createdAt | date : ' MMMM, d, y,  h:mm a'"
+                                [owlTooltipPosition]="'left'" class="meta-line-timestamp">{{ comment?.createdAt |
+                                timeAgo :language}}</p>
+                            <!-- /META LINE TIMESTAMP -->
+                        </div>
+                        <!-- /META LINE -->
+
+                        <!-- META LINE -->
+                        <div class="meta-line settings">
+                            <!-- POST SETTINGS WRAP -->
+                            <div class="post-settings-wrap" style="position: relative;">
+                                <!-- POST SETTINGS -->
+                                <div class="post-settings post-settings-dropdown-trigger">
+                                    <!-- POST SETTINGS ICON -->
+                                    <svg class="post-settings-icon icon-more-dots">
+                                        <use xlink:href="#svg-more-dots"></use>
+                                    </svg>
+                                    <!-- /POST SETTINGS ICON -->
+                                </div>
+                                <!-- /POST SETTINGS -->
+
+                                <!-- SIMPLE DROPDOWN -->
+                                <div class="simple-dropdown post-settings-dropdown"
+                                    style="position: absolute; z-index: 9999; bottom: 30px; right: 0px; opacity: 0; visibility: hidden; transform: translate(0px, 16px); transition: transform 0.3s ease-in-out 0s, opacity 0.3s ease-in-out 0s, visibility 0.3s ease-in-out 0s;">
+                                    <!-- SIMPLE DROPDOWN LINK -->
+                                    <p class="simple-dropdown-link">Report Post</p>
+                                    <!-- /SIMPLE DROPDOWN LINK -->
+                                </div>
+                                <!-- /SIMPLE DROPDOWN -->
+                            </div>
+                            <!-- /POST SETTINGS WRAP -->
+                        </div>
+                        <!-- /META LINE -->
+                    </div>
+                    <!-- /CONTENT ACTION -->
+                </div>
+                <!-- /CONTENT ACTIONS -->
+            </div>
+            <!-- /POST COMMENT -->
+
+            <!-- POST COMMENT FORM -->
+            <div class="post-comment-form">
+
+                <!-- FORM -->
+                <form class="form" (submit)="submitComment()">
+                    <!-- FORM ROW -->
+                    <div class="form-row">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small">
+                                <input [(ngModel)]="newComment" placeholder="Your comment" type="text" id="post-comment"
+                                    name="post_comment" autocomplete="off">
+                                <button type="submit" style="display:none">hidden submit</button>
+
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                </form>
+                <!-- /FORM -->
+
+            </div>
+            <!-- /POST COMMENT FORM -->
+        </div>
+    </div>
+    <!-- /WIDGET BOX -->
+</ng-container>
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">publication </h4>
+    </div>
+    <!--<div class="modal-body">
+        <input type="text" [(ngModel)]="publication[selectedPost].content">
+    </div> -->
+      <div class="modal-footer">
+     
+      <button type="button" (click)="onUpdatePost()" class="btn btn-primary">Save changes</button>
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template> 

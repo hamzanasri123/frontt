@@ -1,0 +1,29 @@
+.user-status-title {
+  position: relative;
+  top: 12px;
+}
+
+.dropdown-box.header-dropdown.language {
+  height: 250px;
+}
+
+img.round {
+  border-radius: 50%;
+}
+$base-size: 16;
+
+$fs-20: (20 / $base-size) * 1rem;
+$font-secondary: "Rajdhani", sans-serif;
+$weight-black: 900;
+
+.header-text {
+  margin-left: 26px;
+  color: white;
+  font-family: $font-secondary;
+  font-size: $fs-20;
+  font-weight: $weight-black;
+}
+
+a.menu-main-item-link{
+  font-size:medium !important;
+}

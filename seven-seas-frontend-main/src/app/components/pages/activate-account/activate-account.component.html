@@ -1,0 +1,48 @@
+<!-- LANDING -->
+<div class="landing">
+    <!-- LANDING DECORATION -->
+    <div class="landing-decoration"></div>
+    <!-- /LANDING DECORATION -->
+
+    <!-- LANDING INFO -->
+    <div class="landing-info">
+        <!-- LOGO -->
+        <div class="logo">
+            <img style="height: 132px; width: auto;" class="icon-logo-vikinger"
+                src="../../../../assets/img/logo-white-big.png">
+        </div>
+        <!-- /LOGO -->
+
+        <!-- LANDING INFO PRETITLE -->
+        <h2 class="landing-info-pretitle">{{'welcome_to' | translate}}</h2>
+        <!-- /LANDING INFO PRETITLE -->
+
+        <!-- LANDING INFO TITLE -->
+        <h1 class="landing-info-title">{{'linkedfishers' | translate}}</h1>
+        <!-- /LANDING INFO TITLE -->
+        <div class="tab-switch">
+            <!-- TAB SWITCH BUTTON -->
+            <a *ngIf="!verifying" [routerLink]="['/login']">
+                <p class="tab-switch-button login-register-form-trigger pointer active">{{'login' | translate}}</p>
+            </a>
+            <!-- /TAB SWITCH BUTTON -->
+
+            <div *ngIf="verifying" class="loader-bars">
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+            </div>
+            <!-- /LOADER BARS -->
+
+        </div>
+
+    </div>
+    <!-- /LANDING INFO -->
+
+</div>
+<!-- /LANDING -->

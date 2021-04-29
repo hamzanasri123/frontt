@@ -1,0 +1,343 @@
+<!-- CONTENT GRID -->
+<div class="content-grid">
+    <!-- SECTION BANNER -->
+    <div class="section-banner">
+        <!-- SECTION BANNER ICON -->
+        <img class="section-banner-icon" src="../../../../assets/img/banner/accounthub-icon.png" alt="accounthub-icon">
+        <!-- /SECTION BANNER ICON -->
+
+        <!-- SECTION BANNER TITLE -->
+        <p class="section-banner-title">Boats Hub</p>
+        <!-- /SECTION BANNER TITLE -->
+
+        <!-- SECTION BANNER TEXT -->
+        <p class="section-banner-text">Manage your boats</p>
+        <!-- /SECTION BANNER TEXT -->
+    </div>
+    <!-- /SECTION BANNER -->
+
+    <!-- GRID -->
+    <div class="grid  medium-space">
+        <!-- GRID COLUMN -->
+        <div class="account-hub-content">
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+                <!-- SECTION HEADER INFO -->
+                <div class="section-header-info">
+                    <!-- SECTION PRETITLE -->
+                    <p class="section-pretitle">My Garage</p>
+                    <!-- /SECTION PRETITLE -->
+
+                    <!-- SECTION TITLE -->
+                    <h2 class="section-title">Manage Boats</h2>
+                    <!-- /SECTION TITLE -->
+                </div>
+                <!-- /SECTION HEADER INFO -->
+            </div>
+            <!-- /SECTION HEADER -->
+
+            <!-- GRID -->
+            <div class="grid grid-3-3-3 centered-on-mobile">
+                <!-- CREATE ENTITY BOX -->
+                <div class="create-entity-box v2">
+                    <!-- CREATE ENTITY BOX COVER -->
+                    <div class="create-entity-box-cover"></div>
+                    <!-- /CREATE ENTITY BOX COVER -->
+
+                    <!-- CREATE ENTITY BOX AVATAR -->
+                    <div class="create-entity-box-avatar primary">
+                        <!-- CREATE ENTITY BOX AVATAR ICON -->
+                        <svg class="create-entity-box-avatar-icon icon-item">
+                            <use xlink:href="#svg-boat"></use>
+                        </svg>
+                        <!-- /CREATE ENTITY BOX AVATAR ICON -->
+                    </div>
+                    <!-- /CREATE ENTITY BOX AVATAR -->
+
+                    <!-- CREATE ENTITY BOX INFO -->
+                    <div class="create-entity-box-info">
+                        <!-- CREATE ENTITY BOX TITLE -->
+                        <p class="create-entity-box-title">Your Item Name Here</p>
+                        <!-- /CREATE ENTITY BOX TITLE -->
+
+                        <!-- CREATE ENTITY BOX CATEGORY -->
+                        <p class="create-entity-box-category">Category</p>
+                        <!-- /CREATE ENTITY BOX CATEGORY -->
+
+                        <!-- BUTTON -->
+                        <p class="button primary full popup-manage-boat-trigger">Add new Boat!</p>
+                        <!-- /BUTTON -->
+                        <!-- BUTTON -->
+                        <p id="updateBtn" style="display: none;" class="popup-edit-boat-trigger">
+                        </p>
+                        <!-- /BUTTON -->
+
+                    </div>
+                    <!-- /CREATE ENTITY BOX INFO -->
+                </div>
+                <!-- /CREATE ENTITY BOX -->
+
+                <!-- PRODUCT PREVIEW -->
+                <div *ngFor="let boat of userBoats ; let i = index" class="product-preview fixed-height">
+                    <!-- PRODUCT PREVIEW IMAGE -->
+                    <a [routerLink]="">
+                        <figure class="product-preview-image liquid">
+                            <img [src]="boat.image? API + boat.image : '../../../../assets/img/fishing-boat-header.png'"
+                                alt="item-01">
+                        </figure>
+                    </a>
+                    <!-- /PRODUCT PREVIEW IMAGE -->
+
+                    <!-- PRODUCT PREVIEW INFO -->
+                    <div class="product-preview-info">
+
+                        <!-- PRODUCT PREVIEW TITLE -->
+                        <p class="product-preview-title"><a [routerLink]="">{{boat?.name}}</a>
+                        </p>
+                        <!-- /PRODUCT PREVIEW TITLE -->
+
+                        <!-- PRODUCT PREVIEW CATEGORY -->
+                        <p class="product-preview-category digital"><a>{{boat?.description}}</a>
+                        </p>
+                        <!-- /PRODUCT PREVIEW CATEGORY -->
+                        <p (click)="openUpdatePopup(i)" class="button white full">
+                            {{'update_boat' | translate}}</p>
+                        <!-- /BUTTON -->
+
+                        <!-- BUTTON -->
+                        <p (click)="removeBoat(i)" class="button secondary full popup-manage-boat-trigger">
+                            {{'delete_boat' |
+                            translate}}</p>
+                        <!-- /BUTTON -->
+                    </div>
+                    <!-- /PRODUCT PREVIEW INFO -->
+                </div>
+                <!-- /PRODUCT PREVIEW -->
+            </div>
+            <!-- /GRID -->
+        </div>
+        <!-- /GRID COLUMN -->
+    </div>
+    <!-- /GRID -->
+</div>
+<!-- /CONTENT GRID -->
+
+<!-- POPUP BOX -->
+<div class="popup-box mid popup-manage-boat">
+    <!-- POPUP CLOSE BUTTON -->
+    <div class="popup-close-button popup-manage-boat-trigger">
+        <!-- POPUP CLOSE BUTTON ICON -->
+        <svg class="popup-close-button-icon icon-cross">
+            <use xlink:href="#svg-cross"></use>
+        </svg>
+        <!-- /POPUP CLOSE BUTTON ICON -->
+    </div>
+    <!-- /POPUP CLOSE BUTTON -->
+
+    <!-- POPUP BOX BODY -->
+    <div class="popup-box-body">
+        <!-- POPUP BOX SIDEBAR -->
+        <div class="popup-box-sidebar">
+            <!-- PRODUCT PREVIEW -->
+            <div class="product-preview">
+                <!-- PRODUCT PREVIEW IMAGE -->
+                <a (click)="openFileInput()" [routerLink]="">
+                    <figure class="product-preview-image liquid">
+                        <img src="../../../../assets/img/fishing-boat-header.png" alt="item-10">
+                        <img *ngIf="imageSrc" [src]="imageSrc" alt="item-10">
+                    </figure>
+                </a>
+                <!-- /PRODUCT PREVIEW IMAGE -->
+
+                <!-- PRODUCT PREVIEW INFO -->
+                <div class="product-preview-info">
+                    <!-- PRODUCT PREVIEW TITLE -->
+                    <p class="product-preview-title"><a (click)="openFileInput()" [routerLink]=""
+                            routerLinkActive="router-link-active">Add
+                            picture</a></p>
+                    <input id="postPhoto" type="file" style="display:none" (change)="fileChange($event)">
+
+                    <!-- /PRODUCT PREVIEW TITLE -->
+                </div>
+                <!-- /PRODUCT PREVIEW INFO -->
+            </div>
+            <!-- /PRODUCT PREVIEW -->
+
+            <!-- POPUP BOX SIDEBAR FOOTER -->
+            <div class="popup-box-sidebar-footer">
+                <!-- BUTTON -->
+                <p (click)="createBoat()" class="button primary full popup-manage-boat-trigger">Save Changes!</p>
+                <!-- /BUTTON -->
+
+                <!-- BUTTON -->
+                <p class="button white full popup-manage-boat-trigger">{{'discard' | translate}}</p>
+                <!-- /BUTTON -->
+            </div>
+            <!-- /POPUP BOX SIDEBAR FOOTER -->
+        </div>
+        <!-- /POPUP BOX SIDEBAR -->
+
+        <!-- POPUP BOX CONTENT -->
+        <div class="popup-box-content limited" data-simplebar>
+            <!-- WIDGET BOX -->
+            <div class="widget-box">
+                <!-- WIDGET BOX TITLE -->
+                <p class="widget-box-title">Boat Details</p>
+                <!-- /WIDGET BOX TITLE -->
+
+                <!-- WIDGET BOX CONTENT -->
+                <div class="widget-box-content">
+                    <!-- FORM -->
+                    <form class="form">
+                        <!-- FORM ROW -->
+                        <div class="form-row">
+                            <!-- FORM ITEM -->
+                            <div class="form-item">
+                                <!-- FORM INPUT -->
+                                <div class="form-input small active">
+                                    <label for="item-name">Boat Name</label>
+                                    <input [(ngModel)]="newBoat.name" type="text" id="item-name" name="item_name">
+                                </div>
+                                <!-- /FORM INPUT -->
+                            </div>
+                            <!-- /FORM ITEM -->
+                        </div>
+                        <!-- /FORM ROW -->
+
+                        <!-- FORM ROW -->
+                        <div class="form-row">
+                            <!-- FORM ITEM -->
+                            <div class="form-item">
+                                <!-- FORM INPUT -->
+                                <div class="form-input small mid-textarea">
+                                    <label for="item-files" class="active">Description</label>
+                                    <textarea [(ngModel)]="newBoat.description" id="item-files" name="item_files"
+                                        placeholder=""></textarea>
+                                </div>
+                                <!-- /FORM INPUT -->
+                            </div>
+                            <!-- /FORM ITEM -->
+                        </div>
+                        <!-- /FORM ROW -->
+                    </form>
+                    <!-- /FORM -->
+                </div>
+                <!-- WIDGET BOX CONTENT -->
+            </div>
+            <!-- /WIDGET BOX -->
+        </div>
+        <!-- /POPUP BOX CONTENT -->
+    </div>
+    <!-- /POPUP BOX BODY -->
+</div>
+<!-- /POPUP BOX -->
+
+<!-- POPUP BOX -->
+<div class="popup-box mid popup-edit-boat">
+    <!-- POPUP CLOSE BUTTON -->
+    <div class="popup-close-button popup-edit-boat-trigger">
+        <!-- POPUP CLOSE BUTTON ICON -->
+        <svg class="popup-close-button-icon icon-cross">
+            <use xlink:href="#svg-cross"></use>
+        </svg>
+        <!-- /POPUP CLOSE BUTTON ICON -->
+    </div>
+    <!-- /POPUP CLOSE BUTTON -->
+
+    <!-- POPUP BOX BODY -->
+    <div class="popup-box-body">
+        <!-- POPUP BOX SIDEBAR -->
+        <div class="popup-box-sidebar">
+            <!-- PRODUCT PREVIEW -->
+            <div class="product-preview">
+                <!-- PRODUCT PREVIEW IMAGE -->
+                <a (click)="openFileInput()" [routerLink]="">
+                    <figure class="product-preview-image liquid">
+                        <img *ngIf="!imageSrc" [src]="API + userBoats[selectedBoat]?.image" alt="item-10">
+                        <img *ngIf="imageSrc" [src]="imageSrc" alt="item-10">
+                    </figure>
+                </a>
+                <!-- /PRODUCT PREVIEW IMAGE -->
+
+                <!-- PRODUCT PREVIEW INFO -->
+                <div class="product-preview-info">
+                    <!-- PRODUCT PREVIEW TITLE -->
+                    <p class="product-preview-title"><a (click)="openFileInput()" [routerLink]="">update
+                            picture</a></p>
+                    <input id="postPhoto" type="file" style="display:none" (change)="fileChange($event)">
+
+                    <!-- /PRODUCT PREVIEW TITLE -->
+                </div>
+                <!-- /PRODUCT PREVIEW INFO -->
+            </div>
+            <!-- /PRODUCT PREVIEW -->
+
+            <!-- POPUP BOX SIDEBAR FOOTER -->
+            <div class="popup-box-sidebar-footer">
+                <!-- BUTTON -->
+                <p (click)="updateBoat()" class="button primary full popup-edit-boat-trigger">Save Changes!</p>
+                <!-- /BUTTON -->
+
+                <!-- BUTTON -->
+                <p class="button white full popup-edit-boat-trigger">{{'discard' | translate}}</p>
+                <!-- /BUTTON -->
+            </div>
+            <!-- /POPUP BOX SIDEBAR FOOTER -->
+        </div>
+        <!-- /POPUP BOX SIDEBAR -->
+
+        <!-- POPUP BOX CONTENT -->
+        <div class="popup-box-content limited" data-simplebar>
+            <!-- WIDGET BOX -->
+            <div class="widget-box">
+                <!-- WIDGET BOX TITLE -->
+                <p class="widget-box-title">Boat Details</p>
+                <!-- /WIDGET BOX TITLE -->
+
+                <!-- WIDGET BOX CONTENT -->
+                <div class="widget-box-content">
+                    <!-- FORM -->
+                    <form class="form">
+                        <!-- FORM ROW -->
+                        <div class="form-row">
+                            <!-- FORM ITEM -->
+                            <div class="form-item">
+                                <!-- FORM INPUT -->
+                                <div class="form-input small active">
+                                    <label for="item-name">Boat Name</label>
+                                    <input *ngIf="selectedBoat>=0" [(ngModel)]="userBoats[selectedBoat].name"
+                                        type="text" id="item-name" name="item_name">
+                                </div>
+                                <!-- /FORM INPUT -->
+                            </div>
+                            <!-- /FORM ITEM -->
+                        </div>
+                        <!-- /FORM ROW -->
+
+                        <!-- FORM ROW -->
+                        <div class="form-row">
+                            <!-- FORM ITEM -->
+                            <div class="form-item">
+                                <!-- FORM INPUT -->
+                                <div class="form-input small mid-textarea">
+                                    <label for="item-files" class="active">Description</label>
+                                    <textarea *ngIf="selectedBoat>=0" [(ngModel)]="userBoats[selectedBoat].description"
+                                        id="item-files" name="item_files" placeholder=""></textarea>
+                                </div>
+                                <!-- /FORM INPUT -->
+                            </div>
+                            <!-- /FORM ITEM -->
+                        </div>
+                        <!-- /FORM ROW -->
+                    </form>
+                    <!-- /FORM -->
+                </div>
+                <!-- WIDGET BOX CONTENT -->
+            </div>
+            <!-- /WIDGET BOX -->
+        </div>
+        <!-- /POPUP BOX CONTENT -->
+    </div>
+    <!-- /POPUP BOX BODY -->
+</div>
+<!-- /POPUP BOX -->

@@ -1,0 +1,37 @@
+<ng-image-fullscreen-view [infinite]="true" [paginationShow]="true" [images]="imageObject"
+    [imageIndex]="selectedImageIndex" [show]="showFlag" (close)="closeFullScreenEventHandler()">
+</ng-image-fullscreen-view>
+
+<section class="section">
+    <!-- SECTION HEADER -->
+    <div class="section-header">
+        <!-- SECTION HEADER INFO -->
+        <div class="section-header-info">
+
+            <!-- SECTION TITLE -->
+            <h2 class="section-title">Timeline Photos <span class="highlighted">{{user?.pictures?.length}}</span></h2>
+            <!-- /SECTION TITLE -->
+        </div>
+        <!-- /SECTION HEADER INFO -->
+    </div>
+    <!-- /SECTION HEADER -->
+
+    <!-- GRID -->
+    <div class="grid grid-3-3-3 centered">
+        <!-- PHOTO PREVIEW -->
+
+        <!-- PHOTO PREVIEW -->
+        <div *ngFor="let picture of user.pictures" class="photo-preview small popup-picture-trigger">
+            <!-- PHOTO PREVIEW IMAGE -->
+            <a [routerLink]="" (click)="showPictures(0)">
+                <figure class="photo-preview-image liquid"
+                    [ngStyle]="{ 'background-image': 'url(' + API + picture + ')'}">
+                    <img [src]="API + picture" alt="photo-preview-01" style="display: none;">
+                </figure>
+            </a>
+            <!-- /PHOTO PREVIEW IMAGE -->
+        </div>
+        <!-- /PHOTO PREVIEW -->
+    </div>
+    <!-- /GRID -->
+</section>

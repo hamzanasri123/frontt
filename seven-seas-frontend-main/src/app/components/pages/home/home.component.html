@@ -1,0 +1,370 @@
+<!-- CONTENT GRID -->
+<div class="content-grid">
+    <!-- SECTION BANNER -->
+    <div class="section-banner">
+        <!-- SECTION BANNER ICON -->
+        <img class="section-banner-icon" src="../../../../assets/img/banner/newsfeed-icon.png" alt="newsfeed-icon">
+        <!-- /SECTION BANNER ICON -->
+
+        <!-- SECTION BANNER TITLE -->
+        <p class="section-banner-title">{{'newsfeed' | translate }}</p>
+        <!-- /SECTION BANNER TITLE -->
+
+        <!-- SECTION BANNER TEXT -->
+        <p class="section-banner-text">{{'newsfeeed_msg' | translate }}</p>
+        <!-- /SECTION BANNER TEXT -->
+    </div>
+    <!-- /SECTION BANNER -->
+
+    <!-- GRID -->
+    <div class="grid grid-3-6-3 mobile-prefer-content">
+        <!-- GRID COLUMN -->
+        <div class="grid-column">
+
+            <!-- WIDGET BOX -->
+            <div class="widget-box">
+                <!-- WIDGET BOX SETTINGS -->
+                <div class="widget-box-settings">
+                    <!-- POST SETTINGS WRAP -->
+                    <div class="post-settings-wrap">
+                        <!-- POST SETTINGS -->
+                        <div class="post-settings widget-box-post-settings-dropdown-trigger">
+                            <!-- POST SETTINGS ICON -->
+                            <svg class="post-settings-icon icon-more-dots">
+                                <use xlink:href="#svg-more-dots"></use>
+                            </svg>
+                            <!-- /POST SETTINGS ICON -->
+                        </div>
+                        <!-- /POST SETTINGS -->
+
+                        <!-- SIMPLE DROPDOWN -->
+                        <div class="simple-dropdown widget-box-post-settings-dropdown">
+                            <!-- SIMPLE DROPDOWN LINK -->
+                            <p class="simple-dropdown-link">Widget Settings</p>
+                            <!-- /SIMPLE DROPDOWN LINK -->
+                        </div>
+                        <!-- /SIMPLE DROPDOWN -->
+                    </div>
+                    <!-- /POST SETTINGS WRAP -->
+                </div>
+                <!-- /WIDGET BOX SETTINGS -->
+
+                <!-- WIDGET BOX TITLE -->
+                <p class="widget-box-title">{{'members' | translate }} </p>
+                <!-- /WIDGET BOX TITLE -->
+
+                <!-- WIDGET BOX CONTENT -->
+                <div class="widget-box-content">
+                    <!-- FILTERS -->
+                    <div class="filters">
+                        <!-- FILTER -->
+                        <p class="filter" (click)="changeUsersTab(0)" [ngClass]="{active: usersActiveTab==0}">Newest</p>
+                        <!-- /FILTER -->
+
+                        <!-- FILTER -->
+                        <p class="filter" (click)="changeUsersTab(1)" [ngClass]="{active: usersActiveTab==1}">Popular
+                        </p>
+                        <!-- /FILTER -->
+                    </div>
+                    <!-- /FILTERS -->
+
+                    <ng-container *ngIf="usersActiveTab==1">
+                        <!-- USER STATUS LIST -->
+                        <div *ngFor="let user of popularUsers" class="user-status-list">
+                            <!-- USER STATUS -->
+                            <div class="user-status request-small">
+                                <!-- USER STATUS AVATAR -->
+                                <a [routerLink]="['/profile',user.slug]" routerLinkActive="router-link-active"
+                                    class="user-status-avatar">
+                                    <!-- USER AVATAR -->
+                                    <div class="user-avatar small no-outline">
+                                        <figure class="picture round liquid small">
+                                            <img class="round" [src]="API+user?.profilePicture" alt="avatar-01">
+                                        </figure>
+                                    </div>
+                                    <!-- /USER AVATAR -->
+                                </a>
+                                <!-- /USER STATUS AVATAR -->
+
+                                <!-- USER STATUS TITLE -->
+                                <p style="width: 200px;" class="user-status-title"><a class="bold"
+                                        [routerLink]="['/profile',user.slug]">{{user?.fullName}}</a>
+                                </p>
+                                <!-- /USER STATUS TITLE -->
+
+                                <!-- USER STATUS TEXT -->
+                                <p class="user-status-text small">{{user?.followers}} follower</p>
+                                <!-- /USER STATUS TEXT -->
+
+                            </div>
+                            <!-- /USER STATUS -->
+                        </div>
+                        <!-- /USER STATUS LIST -->
+                    </ng-container>
+
+                    <ng-container *ngIf="usersActiveTab==0">
+                        <!-- USER STATUS LIST -->
+                        <div *ngFor="let user of newestUsers" class="user-status-list">
+                            <!-- USER STATUS -->
+                            <div class="user-status request-small">
+                                <!-- USER STATUS AVATAR -->
+                                <a [routerLink]="['/profile',user.slug]" class="user-status-avatar">
+                                    <!-- USER AVATAR -->
+                                    <div class="user-avatar small no-outline">
+                                        <figure class="picture round liquid small">
+                                            <img class="round" [src]="API+user?.profilePicture" alt="avatar-01">
+                                        </figure>
+                                    </div>
+                                    <!-- /USER AVATAR -->
+                                </a>
+                                <!-- /USER STATUS AVATAR -->
+
+                                <!-- USER STATUS TITLE -->
+                                <p style="width: 200px;" class="user-status-title"><a class="bold"
+                                        [routerLink]="['/profile',user.slug]">{{user?.fullName}}</a>
+                                </p>
+                                <!-- /USER STATUS TITLE -->
+
+                                <!-- USER STATUS TEXT -->
+                                <p class="user-status-text small">{{user?.createdAt | timeAgo : language}}</p>
+                                <!-- /USER STATUS TEXT -->
+
+                            </div>
+                            <!-- /USER STATUS -->
+                        </div>
+                        <!-- /USER STATUS LIST -->
+                    </ng-container>
+
+                </div>
+                <!-- WIDGET BOX CONTENT -->
+            </div>
+            <!-- /WIDGET BOX -->
+
+            <!-- BANNER PROMO -->
+            <a class="banner-promo" href="https://themeforest.net/user/odin_design" target="_blank">
+                <img src="../../../../assets/img/banner/banner-promo.jpg" alt="banner-promo">
+            </a>
+            <!-- /BANNER PROMO -->
+
+        </div>
+        <!-- /GRID COLUMN -->
+
+        <!-- GRID COLUMN -->
+        <div class="grid-column">
+            <!-- QUICK POST -->
+            <div class="quick-post">
+                <!-- QUICK POST HEADER -->
+                <div class="quick-post-header">
+                    <!-- OPTION ITEMS -->
+                    <div class="option-items">
+                        <!-- OPTION ITEM -->
+                        <div class="option-item active" style="width: 100%;">
+                            <!-- OPTION ITEM ICON -->
+                            <svg class="option-item-icon icon-status">
+                                <use xlink:href="#svg-status"></use>
+                            </svg>
+                            <!-- /OPTION ITEM ICON -->
+
+                            <!-- OPTION ITEM TITLE -->
+                            <p class="option-item-title">{{ 'create_post' | translate }}</p>
+                            <!-- /OPTION ITEM TITLE -->
+                        </div>
+                        <!-- /OPTION ITEM -->
+                    </div>
+                    <!-- /OPTION ITEMS -->
+                </div>
+                <!-- /QUICK POST HEADER -->
+
+                <!-- QUICK POST BODY -->
+                <div class="quick-post-body">
+                    <!-- FORM -->
+                    <form class="form">
+                        <!-- FORM ROW -->
+                        <div class="form-row">
+                            <!-- FORM ITEM -->
+                            <div class="form-item">
+                                <!-- FORM TEXTAREA -->
+                                <div class="form-textarea">
+                                    <textarea [(ngModel)]="newPost.content" id="quick-post-text" name="quick-post-text"
+                                        placeholder="{{'create_post_msg'| translate}}"></textarea>
+                                    <!-- FORM TEXTAREA LIMIT TEXT -->
+                                    <img style="max-height: 50px; width: auto; margin-left: 10px;" *ngIf="imageSrc"
+                                        [src]="imageSrc" id="image">
+                                    <p class="form-textarea-limit-text">{{1000 - newPost.content?.length}}/1000</p>
+                                    <!-- /FORM TEXTAREA LIMIT TEXT -->
+                                </div>
+                                <!-- /FORM TEXTAREA -->
+                            </div>
+                            <!-- /FORM ITEM -->
+                        </div>
+                        <!-- /FORM ROW -->
+                    </form>
+                    <!-- /FORM -->
+                </div>
+                <!-- /QUICK POST BODY -->
+
+                <!-- QUICK POST FOOTER -->
+                <div class="quick-post-footer">
+                    <!-- QUICK POST FOOTER ACTIONS -->
+                    <div class="quick-post-footer-actions">
+                        <!-- QUICK POST FOOTER ACTION -->
+                        <div (click)="openFileInput()" class="quick-post-footer-action text-tooltip-tft-medium"
+                            data-title="Insert Photo">
+                            <input id="postPhoto" type="file" style="display:none" (change)="fileChange($event)">
+                            <!-- QUICK POST FOOTER ACTION ICON -->
+                            <svg class="quick-post-footer-action-icon icon-camera">
+                                <use xlink:href="#svg-camera"></use>
+                            </svg>
+                            <!-- /QUICK POST FOOTER ACTION ICON -->
+                        </div>
+                        <!-- /QUICK POST FOOTER ACTION -->
+
+                        <!-- QUICK POST FOOTER ACTION -->
+                        <div class="quick-post-footer-action text-tooltip-tft-medium" data-title="Insert Tag">
+                            <!-- QUICK POST FOOTER ACTION ICON -->
+                            <svg class="quick-post-footer-action-icon icon-tags">
+                                <use xlink:href="#svg-tags"></use>
+                            </svg>
+                            <!-- /QUICK POST FOOTER ACTION ICON -->
+                        </div>
+                        <!-- /QUICK POST FOOTER ACTION -->
+                    </div>
+                    <!-- /QUICK POST FOOTER ACTIONS -->
+
+                    <!-- QUICK POST FOOTER ACTIONS -->
+                    <div class="quick-post-footer-actions">
+                        <!-- BUTTON -->
+                        <p (click)="discardPost()" class="button small void">{{ 'discard' | translate }}</p>
+                        <!-- /BUTTON -->
+
+                        <!-- BUTTON -->
+                        <p (click)="createPost()" [ngClass]="{disabled : !newPost.content && !formData}"
+                            class="button small secondary">{{'post' | translate }}</p>
+                        <!-- /BUTTON -->
+                    </div>
+                    <!-- /QUICK POST FOOTER ACTIONS -->
+                </div>
+                <!-- /QUICK POST FOOTER -->
+            </div>
+            <!-- /QUICK POST -->
+
+            <!-- SIMPLE TAB ITEMS -->
+            <div class="simple-tab-items">
+
+                <!-- SIMPLE TAB ITEM -->
+                <p (click)="changeTab(0)" class="simple-tab-item" [ngClass]="{active: feedTab==0}">{{'all_updates' |
+                    translate}}</p>
+                <!-- /SIMPLE TAB ITEM -->
+
+                <!-- SIMPLE TAB ITEM -->
+                <p (click)="changeTab(1)" class="simple-tab-item" [ngClass]="{active: feedTab==1}">{{'following' |
+                    translate}}</p>
+                <!-- /SIMPLE TAB ITEM -->
+
+            </div>
+            <!-- /SIMPLE TAB ITEMS -->
+            <app-post *ngFor="let post of posts" (postDeleted)="deletePost($event)" [post]="post"></app-post>
+
+            <!-- LOADER BARS -->
+            <div *ngIf="posts.length==0" class="loader-bars">
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+            </div>
+            <!-- /LOADER BARS -->
+        </div>
+        <!-- /GRID COLUMN -->
+
+        <!-- GRID COLUMN -->
+        <div class="grid-column">
+            <!-- WIDGET BOX -->
+            <a [routerLink]="['/weather']">
+                <div class="widget-box no-padding">
+                    <p class="widget-box-title">{{'weather' | translate}}</p>
+                    <div class="widget-box-content">
+                        <app-weather></app-weather>
+                    </div>
+                </div>
+            </a>
+            <!-- WIDGET BOX -->
+
+
+            <div class="widget-box no-padding">
+                <a [routerLink]="['/map']">
+                    <p class="widget-box-title">Find nearby</p>
+                </a>
+                <div class="widget-box-content">
+                    <app-map-box></app-map-box>
+                </div>
+            </div>
+            <!-- WIDGET BOX -->
+
+            <!-- WIDGET BOX -->
+            <div *ngIf="(upcomingEvents | json) != '{}'" class="widget-box no-padding">
+                <!-- WIDGET BOX TITLE -->
+                <a [routerLink]="['/events']">
+                    <p class="widget-box-title">Upcoming events</p>
+                </a>
+                <!-- /WIDGET BOX TITLE -->
+
+                <!-- WIDGET BOX CONTENT -->
+                <div class="widget-box-content">
+                    <!-- CALENDAR EVENTS PREVIEW -->
+                    <div class="calendar-events-preview small">
+                        <ng-container *ngFor="let eventDay of upcomingEvents | propreties">
+                            <p class="calendar-events-preview-title">{{eventDay | date : 'longDate'}}</p>
+
+                            <!-- CALENDAR EVENT PREVIEW LIST -->
+                            <div style="margin-bottom: 20px;" class="calendar-event-preview-list">
+                                <!-- CALENDAR EVENT PREVIEW -->
+                                <div *ngFor="let event of upcomingEvents[eventDay]"
+                                    class="calendar-event-preview small primary">
+                                    <!-- CALENDAR EVENT PREVIEW START TIME -->
+                                    <div class="calendar-event-preview-start-time">
+                                        <!-- CALENDAR EVENT PREVIEW START TIME TITLE -->
+                                        <p class="calendar-event-preview-start-time-title">{{event.startDate | date
+                                            :'h:mm'}}</p>
+                                        <!-- /CALENDAR EVENT PREVIEW START TIME TITLE -->
+
+                                        <!-- CALENDAR EVENT PREVIEW START TIME TEXT -->
+                                        <p class="calendar-event-preview-start-time-text">{{event.startDate | date
+                                            :'a'}}</p>
+                                        <!-- /CALENDAR EVENT PREVIEW START TIME TEXT -->
+                                    </div>
+                                    <!-- /CALENDAR EVENT PREVIEW START TIME -->
+
+                                    <!-- CALENDAR EVENT PREVIEW INFO -->
+                                    <div class="calendar-event-preview-info">
+                                        <!-- CALENDAR EVENT PREVIEW TITLE -->
+                                        <p class="calendar-event-preview-title">{{event.name}}</p>
+                                        <!-- /CALENDAR EVENT PREVIEW TITLE -->
+
+                                        <!-- CALENDAR EVENT PREVIEW TEXT -->
+                                        <p class="calendar-event-preview-text">{{event.description}}</p>
+                                        <!-- /CALENDAR EVENT PREVIEW TEXT -->
+                                    </div>
+                                    <!-- /CALENDAR EVENT PREVIEW INFO -->
+                                </div>
+                                <!-- /CALENDAR EVENT PREVIEW -->
+                            </div>
+                            <!-- /CALENDAR EVENT PREVIEW LIST -->
+                        </ng-container>
+
+                    </div>
+                    <!-- /CALENDAR EVENTS PREVIEW -->
+                </div>
+                <!-- /WIDGET BOX CONTENT -->
+            </div>
+            <!-- /WIDGET BOX -->
+
+        </div>
+        <!-- /GRID COLUMN -->
+    </div>
+    <!-- /GRID -->
+</div>
+<!-- /CONTENT GRID -->

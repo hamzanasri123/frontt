@@ -1,0 +1,26 @@
+.content-grid {
+    max-width: none;
+    width: 80vw;
+    height: 80vh;
+    padding: 112px 0 100px;
+}
+
+#map {
+    height: 100vh;
+}
+
+.widget-box {
+    margin-left: 180px;
+    margin-top: 108px;
+    z-index: 9999999;
+    position: fixed;
+}
+
+.reduced {
+    height: 20px;
+    width: auto;
+}
+
+.widget-box-title.large {
+    font-size: 1.5rem;
+}

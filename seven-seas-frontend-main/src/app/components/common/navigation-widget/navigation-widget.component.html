@@ -1,0 +1,530 @@
+<!-- NAVIGATION WIDGET -->
+<nav id="navigation-widget-small" class="navigation-widget navigation-widget-desktop closed sidebar left delayed">
+    <!-- USER AVATAR -->
+    <a class="user-avatar small no-outline online" [routerLink]="['/profile']">
+        <!-- USER AVATAR CONTENT -->
+        <div class="user-avatar-content">
+            <!-- HEXAGON -->
+            <div class="hexagon-image-30-32" id="profilePicture3" data-src="../../../../assets/img/default-profile.png">
+            </div> <!-- /HEXAGON -->
+        </div>
+        <!-- /USER AVATAR CONTENT -->
+
+        <!-- USER AVATAR PROGRESS -->
+        <div class="user-avatar-progress">
+            <!-- HEXAGON -->
+            <div class="hexagon-progress-40-44"></div>
+            <!-- /HEXAGON -->
+        </div>
+        <!-- /USER AVATAR PROGRESS -->
+
+        <!-- USER AVATAR PROGRESS BORDER -->
+        <div class="user-avatar-progress-border">
+            <!-- HEXAGON -->
+            <div class="hexagon-border-40-44"></div>
+            <!-- /HEXAGON -->
+        </div>
+        <!-- /USER AVATAR PROGRESS BORDER -->
+
+    </a>
+    <!-- /USER AVATAR -->
+
+    <!-- MENU -->
+    <ul class="menu small">
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link text-tooltip-tfr" [routerLink]="['/']" data-title="Newsfeed">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-newsfeed">
+                    <use xlink:href="#svg-newsfeed"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li *ngIf="isAdmin" class="menu-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link text-tooltip-tfr" [routerLink]="['/admin']" data-title="Admin">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-group">
+                    <use xlink:href="#svg-group"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link text-tooltip-tfr" [routerLink]="['/events']" data-title="Events">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-events">
+                    <use xlink:href="#svg-events"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link text-tooltip-tfr" [routerLink]="['/map']" data-title="Map">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-members">
+                    <use xlink:href="#svg-globe"></use>
+                </svg> <!-- /MENU ITEM LINK ICON -->
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link text-tooltip-tfr" [routerLink]="['/weather']" data-title="Weather">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-members">
+                    <use xlink:href="#svg-weather"></use>
+                </svg> <!-- /MENU ITEM LINK ICON -->
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link text-tooltip-tfr" [routerLink]="['/equipments']" data-title="Equipment">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-badges">
+                    <use xlink:href="#svg-equipment"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link text-tooltip-tfr" [routerLink]="['/boats']" data-title="Boats">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-quests">
+                    <use xlink:href="#svg-boat"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link text-tooltip-tfr" [routerLink]="['/homes']" data-title="Homes">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-streams">
+                    <use xlink:href="#svg-home"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+    </ul>
+    <!-- /MENU -->
+</nav>
+<!-- /NAVIGATION WIDGET -->
+
+<!-- NAVIGATION WIDGET -->
+<nav id="navigation-widget" class="navigation-widget navigation-widget-desktop sidebar left hidden" data-simplebar>
+    <!-- NAVIGATION WIDGET COVER -->
+    <figure class="navigation-widget-cover liquid">
+        <img src="./assets/img/cover/01.jpg" alt="cover-01">
+    </figure>
+    <!-- /NAVIGATION WIDGET COVER -->
+
+    <!-- USER SHORT DESCRIPTION -->
+    <div class="user-short-description">
+        <!-- USER SHORT DESCRIPTION AVATAR -->
+        <a class="user-short-description-avatar user-avatar medium" [routerLink]="['/profile']">
+            <!-- USER AVATAR BORDER -->
+            <div class="user-avatar-border">
+                <!-- HEXAGON -->
+                <div class="hexagon-120-132"></div>
+                <!-- /HEXAGON -->
+            </div>
+            <!-- /USER AVATAR BORDER -->
+
+            <!-- USER AVATAR CONTENT -->
+            <div class="user-avatar-content">
+                <!-- HEXAGON -->
+                <div class="hexagon-image-82-90" id="profilePicture1"
+                    data-src="../../../../assets/img/default-profile.png"></div>
+                <!-- /HEXAGON -->
+            </div>
+            <!-- /USER AVATAR CONTENT -->
+
+            <!-- USER AVATAR PROGRESS -->
+            <div class="user-avatar-progress">
+                <!-- HEXAGON -->
+                <div class="hexagon-progress-100-110"></div>
+                <!-- /HEXAGON -->
+            </div>
+            <!-- /USER AVATAR PROGRESS -->
+
+            <!-- USER AVATAR PROGRESS BORDER -->
+            <div class="user-avatar-progress-border">
+                <!-- HEXAGON -->
+                <div class="hexagon-border-100-110"></div>
+                <!-- /HEXAGON -->
+            </div>
+            <!-- /USER AVATAR PROGRESS BORDER -->
+        </a>
+        <!-- /USER SHORT DESCRIPTION AVATAR -->
+
+        <!-- USER SHORT DESCRIPTION TITLE -->
+        <p class="user-short-description-title"><a [routerLink]="['/profile']">{{currentUser?.nom}}</a></p>
+        <!-- /USER SHORT DESCRIPTION TITLE -->
+
+    </div>
+    <!-- /USER SHORT DESCRIPTION -->
+
+    <!-- MENU -->
+    <ul class="menu">
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['/']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-newsfeed">
+                    <use xlink:href="#svg-newsfeed"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Newsfeed
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li *ngIf="false" class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-overview">
+                    <use xlink:href="#svg-overview"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Overview
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['/events']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-events">
+                    <use xlink:href="#svg-events"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Events
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['/map']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-members">
+                    <use xlink:href="#svg-globe"></use>
+                </svg> <!-- /MENU ITEM LINK ICON -->
+                Map
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['/weather']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-members">
+                    <use xlink:href="#svg-weather"></use>
+                </svg> <!-- /MENU ITEM LINK ICON -->
+                Weather
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['/equipments']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-members">
+                    <use xlink:href="#svg-equipment"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Equipment
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['/boats']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-quests">
+                    <use xlink:href="#svg-boat"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Boats
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['homes']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-streams">
+                    <use xlink:href="#svg-home"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Homes
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+    </ul>
+    <!-- /MENU -->
+</nav>
+<!-- /NAVIGATION WIDGET -->
+
+<!-- NAVIGATION WIDGET -->
+<nav id="navigation-widget-mobile" class="navigation-widget navigation-widget-mobile sidebar left hidden"
+    data-simplebar>
+    <!-- NAVIGATION WIDGET CLOSE BUTTON -->
+    <div class="navigation-widget-close-button">
+        <!-- NAVIGATION WIDGET CLOSE BUTTON ICON -->
+        <svg class="navigation-widget-close-button-icon icon-back-arrow">
+            <use xlink:href="#svg-back-arrow"></use>
+        </svg>
+        <!-- NAVIGATION WIDGET CLOSE BUTTON ICON -->
+    </div>
+    <!-- /NAVIGATION WIDGET CLOSE BUTTON -->
+
+    <!-- NAVIGATION WIDGET INFO WRAP -->
+    <div class="navigation-widget-info-wrap">
+        <!-- NAVIGATION WIDGET INFO -->
+        <div class="navigation-widget-info">
+            <!-- USER AVATAR -->
+            <a class="user-avatar small no-outline" [routerLink]="['/profile']">
+                <!-- USER AVATAR CONTENT -->
+                <div class="user-avatar-content">
+                    <!-- HEXAGON -->
+                    <div class="hexagon-image-30-32" id="profilePicture2"
+                        data-src="../../../../assets/img/default-profile.png"></div> <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR CONTENT -->
+
+                <!-- USER AVATAR PROGRESS -->
+                <div class="user-avatar-progress">
+                    <!-- HEXAGON -->
+                    <div class="hexagon-progress-40-44"></div>
+                    <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR PROGRESS -->
+
+                <!-- USER AVATAR PROGRESS BORDER -->
+                <div class="user-avatar-progress-border">
+                    <!-- HEXAGON -->
+                    <div class="hexagon-border-40-44"></div>
+                    <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR PROGRESS BORDER -->
+
+            </a>
+            <!-- /USER AVATAR -->
+
+            <!-- NAVIGATION WIDGET INFO TITLE -->
+            <p class="navigation-widget-info-title"><a [routerLink]="['/profile']">{{currentUser?.nom}}</a></p>
+            <!-- /NAVIGATION WIDGET INFO TITLE -->
+
+            <!-- NAVIGATION WIDGET INFO TEXT -->
+            <p class="navigation-widget-info-text">Welcome Back!</p>
+            <!-- /NAVIGATION WIDGET INFO TEXT -->
+        </div>
+        <!-- /NAVIGATION WIDGET INFO -->
+
+        <!-- NAVIGATION WIDGET BUTTON -->
+        <p class="navigation-widget-info-button button small secondary">Logout</p>
+        <!-- /NAVIGATION WIDGET BUTTON -->
+    </div>
+    <!-- /NAVIGATION WIDGET INFO WRAP -->
+
+    <!-- NAVIGATION WIDGET SECTION TITLE -->
+    <p class="navigation-widget-section-title">Sections</p>
+    <!-- /NAVIGATION WIDGET SECTION TITLE -->
+
+    <!-- MENU -->
+    <ul class="menu">
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['/']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-newsfeed">
+                    <use xlink:href="#svg-newsfeed"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Newsfeed
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['/events']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-events">
+                    <use xlink:href="#svg-events"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Events
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['/map']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-members">
+                    <use xlink:href="#svg-globe"></use>
+                </svg> <!-- /MENU ITEM LINK ICON -->
+                Map
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['/weather']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-members">
+                    <use xlink:href="#svg-weather"></use>
+                </svg> <!-- /MENU ITEM LINK ICON -->
+                Weather
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['/equipments']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-badges">
+                    <use xlink:href="#svg-equipment"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Equipment
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['/boats']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-quests">
+                    <use xlink:href="#svg-boat"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Boats
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+
+        <!-- MENU ITEM -->
+        <li class="menu-item" routerLinkActive="active">
+            <!-- MENU ITEM LINK -->
+            <a class="menu-item-link" [routerLink]="['homes']">
+                <!-- MENU ITEM LINK ICON -->
+                <svg class="menu-item-link-icon icon-streams">
+                    <use xlink:href="#svg-home"></use>
+                </svg>
+                <!-- /MENU ITEM LINK ICON -->
+                Homes
+            </a>
+            <!-- /MENU ITEM LINK -->
+        </li>
+        <!-- /MENU ITEM -->
+    </ul>
+    <!-- /MENU -->
+
+    <!-- NAVIGATION WIDGET SECTION TITLE -->
+    <p class="navigation-widget-section-title">My Profile</p>
+    <!-- /NAVIGATION WIDGET SECTION TITLE -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" [routerLink]="['/profile']">Profile</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" [routerLink]="['/notifications']">Notifications</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION TITLE -->
+    <p class="navigation-widget-section-title">Account</p>
+    <!-- /NAVIGATION WIDGET SECTION TITLE -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" [routerLink]="['/settings']">Account Info</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" [routerLink]="['/settings/change-password']">Change Password</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+    <!-- NAVIGATION WIDGET SECTION LINK -->
+    <a class="navigation-widget-section-link" [routerLink]="['/settings/social']">Social links</a>
+    <!-- /NAVIGATION WIDGET SECTION LINK -->
+
+</nav>
+<!-- /NAVIGATION WIDGET -->

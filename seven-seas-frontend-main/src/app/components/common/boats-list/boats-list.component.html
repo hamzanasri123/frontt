@@ -1,0 +1,32 @@
+<!-- GRID -->
+<div class="grid grid-3-3-3 centered-on-mobile">
+    <!-- PRODUCT PREVIEW -->
+    <div *ngFor="let boat of boats ; let i = index" class="product-preview fixed-height">
+        <!-- PRODUCT PREVIEW IMAGE -->
+        <a [routerLink]="">
+            <figure class="product-preview-image liquid">
+                <img [src]="boat.image? API + boat.image : '../../../../assets/img/fishing-boat-header.png'"
+                    alt="item-01">
+            </figure>
+        </a>
+        <!-- /PRODUCT PREVIEW IMAGE -->
+
+        <!-- PRODUCT PREVIEW INFO -->
+        <div class="product-preview-info">
+
+            <!-- PRODUCT PREVIEW TITLE -->
+            <p class="product-preview-title"><a [routerLink]="">{{boat?.name}}</a>
+            </p>
+            <!-- /PRODUCT PREVIEW TITLE -->
+
+            <!-- PRODUCT PREVIEW CATEGORY -->
+            <p class="product-preview-category digital"><a [routerLink]="" >{{boat?.description}}</a>
+            </p>
+            <!-- /PRODUCT PREVIEW CATEGORY -->
+
+        </div>
+        <!-- /PRODUCT PREVIEW INFO -->
+    </div>
+    <!-- /PRODUCT PREVIEW -->
+</div>
+<!-- /GRID -->

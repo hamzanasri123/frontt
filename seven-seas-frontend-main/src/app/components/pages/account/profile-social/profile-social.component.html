@@ -1,0 +1,115 @@
+<!-- SECTION HEADER -->
+<div class="section-header">
+    <!-- SECTION HEADER INFO -->
+    <div class="section-header-info">
+        <!-- SECTION PRETITLE -->
+        <p class="section-pretitle">{{'my_profile' | translate}}</p>
+        <!-- /SECTION PRETITLE -->
+
+        <!-- SECTION TITLE -->
+        <h2 class="section-title">Social Networks</h2>
+        <!-- /SECTION TITLE -->
+    </div>
+    <!-- /SECTION HEADER INFO -->
+</div>
+<!-- /SECTION HEADER -->
+
+<!-- GRID COLUMN -->
+<div class="grid-column">
+    <!-- WIDGET BOX -->
+    <div class="widget-box">
+        <!-- WIDGET BOX TITLE -->
+        <p class="widget-box-title">Your Social Accounts</p>
+        <!-- /WIDGET BOX TITLE -->
+
+        <!-- WIDGET BOX CONTENT -->
+        <div class="widget-box-content">
+            <!-- FORM -->
+            <form class="form">
+                <!-- FORM ROW -->
+                <div class="form-row split">
+                    <!-- FORM ITEM -->
+                    <div class="form-item">
+                        <!-- FORM INPUT -->
+                        <div class="form-input social-input small active">
+                            <!-- SOCIAL LINK -->
+                            <div class="social-link no-hover facebook">
+                                <!-- ICON FACEBOOK -->
+                                <svg class="icon-facebook">
+                                    <use xlink:href="#svg-facebook"></use>
+                                </svg>
+                                <!-- /ICON FACEBOOK -->
+                            </div>
+                            <!-- /SOCIAL LINK -->
+
+                            <label for="social-account-facebook">Facebook Username</label>
+                            <input type="text" id="social-account-facebook" name="social_account_facebook"
+                                [(ngModel)]="user.facebook">
+                        </div>
+                        <!-- /FORM INPUT -->
+                    </div>
+                    <!-- /FORM ITEM -->
+
+                </div>
+                <!-- /FORM ROW -->
+
+                <!-- FORM ROW -->
+                <div class="form-row split">
+                    <!-- FORM ITEM -->
+                    <div class="form-item">
+                        <!-- FORM INPUT -->
+                        <div class="form-input social-input small active">
+                            <!-- SOCIAL LINK -->
+                            <div class="social-link no-hover instagram">
+                                <!-- ICON INSTAGRAM -->
+                                <svg class="icon-instagram">
+                                    <use xlink:href="#svg-instagram"></use>
+                                </svg>
+                                <!-- /ICON INSTAGRAM -->
+                            </div>
+                            <!-- /SOCIAL LINK -->
+
+                            <label for="social-account-instagram">Instagram Username</label>
+                            <input type="text" id="social-account-instagram" name="social_account_instagram"
+                                [(ngModel)]="user.instagram">
+                        </div>
+                        <!-- /FORM INPUT -->
+                    </div>
+                    <!-- /FORM ITEM -->
+                </div>
+                <!-- /FORM ROW -->
+
+                <!-- FORM ROW -->
+                <div class="form-row split">
+                    <!-- FORM ITEM -->
+                    <div class="form-item">
+                        <!-- FORM INPUT -->
+                        <div class="form-input social-input small active">
+                            <!-- SOCIAL LINK -->
+                            <div class="social-link no-hover youtube">
+                                <!-- ICON YOUTUBE -->
+                                <svg class="icon-youtube">
+                                    <use xlink:href="#svg-youtube"></use>
+                                </svg>
+                                <!-- /ICON YOUTUBE -->
+                            </div>
+                            <!-- /SOCIAL LINK -->
+
+                            <label for="social-account-youtube">Youtube Username</label>
+                            <input type="text" id="social-account-youtube" name="social_account_youtube"
+                                [(ngModel)]="user.youtube">
+                        </div>
+                        <!-- /FORM INPUT -->
+                    </div>
+                    <!-- /FORM ITEM -->
+                </div>
+                <!-- /FORM ROW -->
+            </form>
+            <!-- /FORM -->
+        </div>
+        <!-- WIDGET BOX CONTENT -->
+    </div>
+    <!-- /WIDGET BOX -->
+
+</div>
+<!-- /GRID COLUMN -->

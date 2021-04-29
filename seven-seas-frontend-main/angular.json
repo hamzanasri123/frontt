@@ -1,0 +1,174 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "seven-seas-frontend": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/seven-seas-frontend",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/angular-calendar/css/angular-calendar.css",
+              "src/assets/css/vendor/bootstrap.min.css",
+              "src/assets/css/styles.min.css",
+              "src/assets/css/vendor/simplebar.css",
+              "src/assets/css/vendor/tiny-slider.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/owl-ng/assets/style/theme.min.css",
+              "node_modules/ng-pick-datetime/assets/style/picker.min.css",
+              "node_modules/sweetalert2/src/sweetalert2.scss",
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/leaflet-geosearch/assets/css/leaflet.css"
+            ],
+            "scripts": [
+              "src/assets/js/vendor/simplebar.min.js",
+              "src/assets/js/vendor/tiny-slider.min.js",
+              "src/assets/js/vendor/Chart.bundle.min.js",
+              "src/assets/js/vendor/xm_tooltip.min.js",
+              "src/assets/js/vendor/xm_tab.min.js",
+              "src/assets/js/vendor/xm_progressBar.min.js",
+              "src/assets/js/vendor/xm_popup.min.js",
+              "src/assets/js/vendor/xm_plugins.min.js",
+              "src/assets/js/vendor/xm_hexagon.min.js",
+              "src/assets/js/vendor/xm_dropdown.min.js",
+              "src/assets/js/vendor/xm_accordion.min.js",
+              "src/assets/js/utils/app.js",
+              "src/assets/js/utils/svg-loader.js",
+              "src/assets/js/utils/page-loader.js",
+              "src/assets/js/utils/liquidify.js",
+              "src/assets/js/utils/demo-icons.js",
+              "src/assets/js/sidebar/sidebar.js",
+              "src/assets/js/landing/landing.tabs.js",
+              "src/assets/js/header/header.js",
+              "src/assets/js/global/global.tooltips.js",
+              "src/assets/js/global/global.popups.js",
+              "src/assets/js/global/global.maps.js",
+              "src/assets/js/global/global.hexagons.js",
+              "src/assets/js/global/global.charts.js",
+              "src/assets/js/global/global.accordions.js",
+              "src/assets/js/form/form.utils.js",
+              "src/assets/js/content/content.js",
+              "node_modules/sweetalert2/dist/sweetalert2.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "seven-seas-frontend:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "seven-seas-frontend:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "seven-seas-frontend:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "node_modules/angular-calendar/css/angular-calendar.css",
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "seven-seas-frontend:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "seven-seas-frontend:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "seven-seas-frontend",
+  "cli": {
+    "analytics": "296093fd-c891-4de4-a190-0b92816c8452"
+  }
+}

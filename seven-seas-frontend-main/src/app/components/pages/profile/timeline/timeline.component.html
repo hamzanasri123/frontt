@@ -1,0 +1,131 @@
+<!-- GRID -->
+<div class="grid grid-3-6-3 mobile-prefer-content">
+    <!-- GRID COLUMN -->
+    <div class="grid-column">
+        <!-- WIDGET BOX -->
+        <div class="widget-box">
+            <!-- WIDGET BOX TITLE -->
+            <p class="widget-box-title">About Me</p>
+            <!-- /WIDGET BOX TITLE -->
+
+            <!-- WIDGET BOX CONTENT -->
+            <div class="widget-box-content">
+                <!-- PARAGRAPH -->
+                <p class="paragraph">{{user?.description}}</p>
+                <!-- /PARAGRAPH -->
+
+                <!-- INFORMATION LINE LIST -->
+                <div class="information-line-list">
+                    <!-- INFORMATION LINE -->
+                    <div class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Joined</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{user?.createdAt | date : 'MMM d, y,'}}</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+
+                    <!-- INFORMATION LINE -->
+                    <div *ngIf="user?.country" class="information-line">
+                        <!-- INFORMATION LINE TITLE -->
+                        <p class="information-line-title">Country</p>
+                        <!-- /INFORMATION LINE TITLE -->
+
+                        <!-- INFORMATION LINE TEXT -->
+                        <p class="information-line-text">{{getCountryName(user?.country)}}</p>
+                        <!-- /INFORMATION LINE TEXT -->
+                    </div>
+                    <!-- /INFORMATION LINE -->
+                </div>
+                <!-- /INFORMATION LINE LIST -->
+            </div>
+            <!-- /WIDGET BOX CONTENT -->
+        </div>
+        <!-- /WIDGET BOX -->
+
+    </div>
+    <!-- /GRID COLUMN -->
+
+    <!-- GRID COLUMN -->
+    <div class="grid-column">
+
+        <app-post *ngFor="let post of posts" [post]="post"></app-post>
+
+
+        <!-- LOADER BARS -->
+        <div class="loader-bars">
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+        </div>
+        <!-- /LOADER BARS -->
+    </div>
+    <!-- /GRID COLUMN -->
+
+    <!-- GRID COLUMN -->
+    <div class="grid-column">
+
+        <!-- WIDGET BOX -->
+        <div class="widget-box">
+            <!-- WIDGET BOX SETTINGS -->
+            <div class="widget-box-settings">
+                <!-- POST SETTINGS WRAP -->
+                <div class="post-settings-wrap">
+                    <!-- POST SETTINGS -->
+                    <div class="post-settings widget-box-post-settings-dropdown-trigger">
+                        <!-- POST SETTINGS ICON -->
+                        <svg class="post-settings-icon icon-more-dots">
+                            <use xlink:href="#svg-more-dots"></use>
+                        </svg>
+                        <!-- /POST SETTINGS ICON -->
+                    </div>
+                    <!-- /POST SETTINGS -->
+
+                    <!-- SIMPLE DROPDOWN -->
+                    <div class="simple-dropdown widget-box-post-settings-dropdown">
+                        <!-- SIMPLE DROPDOWN LINK -->
+                        <p class="simple-dropdown-link">Widget Settings</p>
+                        <!-- /SIMPLE DROPDOWN LINK -->
+                    </div>
+                    <!-- /SIMPLE DROPDOWN -->
+                </div>
+                <!-- /POST SETTINGS WRAP -->
+            </div>
+            <!-- /WIDGET BOX SETTINGS -->
+
+            <!-- WIDGET BOX TITLE -->
+            <p class="widget-box-title">Photos <span class="highlighted">{{user?.pictures.length || 0}}</span></p>
+            <!-- /WIDGET BOX TITLE -->
+
+            <!-- WIDGET BOX CONTENT -->
+            <div class="widget-box-content">
+                <!-- PICTURE ITEM LIST -->
+                <div class="picture-item-list small">
+                    <!-- PICTURE ITEM -->
+                    <div *ngFor="let picture of user?.pictures" class="picture-item">
+                        <!-- PICTURE -->
+                        <figure class="picture round liquid">
+                            <img [src]="API+picture" alt="avatar-01">
+                        </figure>
+                        <!-- /PICTURE -->
+                    </div>
+                    <!-- /PICTURE ITEM -->
+
+                </div>
+                <!-- /PICTURE ITEM LIST -->
+            </div>
+            <!-- /WIDGET BOX CONTENT -->
+        </div>
+        <!-- /WIDGET BOX -->
+    </div>
+    <!-- /GRID COLUMN -->
+</div>
+<!-- /GRID -->

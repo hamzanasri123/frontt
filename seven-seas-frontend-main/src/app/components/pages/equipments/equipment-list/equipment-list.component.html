@@ -1,0 +1,188 @@
+<!-- SECTION HEADER -->
+<div class="section-header">
+    <!-- SECTION HEADER INFO -->
+    <div class="section-header-info">
+        <!-- SECTION PRETITLE -->
+        <p class="section-pretitle">Manage Equipments</p>
+        <!-- /SECTION PRETITLE -->
+
+        <!-- SECTION TITLE -->
+        <h2 class="section-title">{{equipmentType?.name}} ,<span class="highlighted">{{equipments?.length}}</span></h2>
+        <!-- /SECTION TITLE -->
+    </div>
+    <!-- /SECTION HEADER INFO -->
+</div>
+<!-- /SECTION HEADER -->
+
+<!-- GRID -->
+<div class="grid" id="grid">
+    <!-- GRID COLUMN -->
+    <div class="grid-column">
+        <!-- TABLE WRAP -->
+        <div class="table-wrap" data-simplebar>
+            <!-- TABLE -->
+            <div class="table table-cart split-rows">
+                <!-- TABLE HEADER -->
+                <div class="table-header">
+                    <!-- TABLE HEADER COLUMN -->
+                    <div class="table-header-column">
+                        <!-- TABLE HEADER TITLE -->
+                        <p class="table-header-title">Equipment</p>
+                        <!-- /TABLE HEADER TITLE -->
+                    </div>
+                    <!-- /TABLE HEADER COLUMN -->
+
+                    <!-- TABLE HEADER COLUMN -->
+                    <div class="table-header-column centered padded-left">
+                        <!-- TABLE HEADER TITLE -->
+                        <p class="table-header-title">In your equipments since</p>
+                        <!-- /TABLE HEADER TITLE -->
+                    </div>
+                    <!-- /TABLE HEADER COLUMN -->
+
+                    <!-- TABLE HEADER COLUMN -->
+                    <div class="table-header-column padded-big-left"></div>
+                    <!-- /TABLE HEADER COLUMN -->
+                </div>
+                <!-- /TABLE HEADER -->
+
+                <!-- TABLE BODY -->
+                <div class="table-body same-color-rows">
+                    <!-- TABLE ROW -->
+                    <div *ngFor="let equipment of equipments ; let i=index" class="table-row medium">
+                        <!-- TABLE COLUMN -->
+                        <div class="table-column">
+                            <!-- PRODUCT PREVIEW -->
+                            <div class="product-preview tiny">
+                                <!-- PRODUCT PREVIEW IMAGE -->
+                                <a [routerLink]="" routerLinkActive="router-link-active">
+                                    <figure class="product-preview-image liquid">
+                                        <img
+                                            [src]="equipment?.image? (API + equipment?.image): (API + equipmentType.icon)">
+                                    </figure>
+                                </a>
+                                <!-- /PRODUCT PREVIEW IMAGE -->
+
+                                <!-- PRODUCT PREVIEW INFO -->
+                                <div class="product-preview-info">
+                                    <!-- PRODUCT PREVIEW TITLE -->
+                                    <p class="product-preview-title"><a [routerLink]="">{{equipment?.name}}</a></p>
+                                    <!-- /PRODUCT PREVIEW TITLE -->
+
+                                    <!-- PRODUCT PREVIEW CATEGORY -->
+                                    <p class="product-preview-category digital"><a
+                                            href="marketplace-category.html">{{equipment?.description}}</a></p>
+                                    <!-- /PRODUCT PREVIEW CATEGORY -->
+                                </div>
+                                <!-- /PRODUCT PREVIEW INFO -->
+                            </div>
+                            <!-- /PRODUCT PREVIEW -->
+                        </div>
+                        <!-- /TABLE COLUMN -->
+
+                        <!-- TABLE COLUMN -->
+                        <div class="table-column centered padded-left">
+                            <!-- PRICE TITLE -->
+                            <p class="price-title"> {{equipment?.createdAt | date : 'fullDate'}}</p>
+                            <!-- /PRICE TITLE -->
+                        </div>
+                        <!-- /TABLE COLUMN -->
+
+                        <!-- TABLE COLUMN -->
+                        <div class="table-column padded-big-left">
+                            <!-- TABLE ACTION -->
+                            <div class="table-action">
+                                <!-- ICON DELETE -->
+                                <svg (click)="deleteEquipment(i)" class="icon-delete">
+                                    <use xlink:href="#svg-delete"></use>
+                                </svg>
+                                <!-- /ICON DELETE -->
+                            </div>
+                            <!-- /TABLE ACTION -->
+                        </div>
+                        <!-- /TABLE COLUMN -->
+                         <!-- TABLE COLUMN -->
+                         <div class="table-column padded-big-left">
+                            <!-- TABLE ACTION -->
+                            <div class="table-action">
+                                <!-- /PRODUCT PREVIEW CATEGORY -->
+                        <button (click)="openVerticallyCentered(content,i)" class="btn btn-primary">
+                            edit </button>
+                        <!-- /BUTTON -->
+                                <!-- /ICON DELETE -->
+                            </div>
+                            <!-- /TABLE ACTION -->
+                        </div>
+                        <!-- /TABLE COLUMN -->
+                    </div>
+                    <!-- /TABLE ROW -->
+                </div>
+                <!-- /TABLE BODY -->
+            </div>
+            <!-- /TABLE -->
+        </div>
+        <!-- /TABLE WRAP -->
+        <!-- PROMO LINE -->
+        <div class="promo-line">
+            <!-- PROMO LINE TEXT -->
+            <p class="promo-line-text">Add new equipment!</p>
+            <!-- /PROMO LINE TEXT -->
+
+            <!-- PROMO LINE ACTIONS -->
+            <div class="promo-line-actions">
+                <!-- FORM INPUT -->
+                <div class="form-input small">
+                    <label for="promo-code">Equipment name</label>
+                    <input [(ngModel)]="newEquipment.name" type="text" id="equipment-name" name="promo_code">
+                </div>
+                <!-- /FORM INPUT -->
+                <!-- FORM INPUT -->
+                <div class="form-input small">
+                    <label for="promo-code">Equipment description</label>
+                    <input [(ngModel)]="newEquipment.description" type="text" id="equipment-description"
+                        name="promo_code">
+                </div>
+                <!-- /FORM INPUT -->
+                <a (click)="openFileInput()" [routerLink]="">
+
+                    <div class="form-input small">
+                        <!-- ICON DELETE -->
+                        <label *ngIf="!imageSrc" for="promo-code">photo</label>
+                        <svg class="icon-delete">
+                            <use xlink:href="#svg-equipment"></use>
+                        </svg>
+                        <!-- /ICON DELETE -->
+                        <img style="max-height: 80px; max-width: 80px;" *ngIf="imageSrc" [src]="imageSrc" alt="item-10">
+                    </div>
+                </a>
+                <input (change)="fileChange($event)" id="postPhoto" type="file" style="display:none">
+
+                <!-- BUTTON -->
+                <p (click)="createEquipment()" class="button secondary">Add equipment</p>
+                <!-- /BUTTON -->
+            </div>
+            <!-- /PROMO LINE ACTIONS -->
+        </div>
+        <!-- /PROMO LINE -->
+        
+<!-- /POPUP BOX CONTENT -->
+</div>
+<!-- /POPUP BOX BODY -->
+
+
+  
+
+  <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <input type="text" [(ngModel)]="equipments[selectedEquipment].description">
+        <input type="text" [(ngModel)]="equipments[selectedEquipment].name">
+    </div>
+      <div class="modal-footer">
+       
+        <button type="button" (click)="onUpdateEquipement()" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>

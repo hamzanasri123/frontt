@@ -1,0 +1,35 @@
+<!-- GRID -->
+<div class="grid grid-3-3-3 centered-on-mobile">
+  
+    <!-- PRODUCT PREVIEW -->
+    <div *ngFor="let home of hebergements ; let i=index" class="product-preview fixed-height">
+        <!-- PRODUCT PREVIEW IMAGE -->
+        <a [routerLink]="" routerLinkActive="router-link-active">
+            <figure class="product-preview-image liquid">
+                <img [src]="home.image? API + home.image : '../../../../assets/img/fishing-home-header.png'"
+                    alt="item-01">
+            </figure>
+        </a>
+        <!-- /PRODUCT PREVIEW IMAGE -->
+
+        <!-- PRODUCT PREVIEW INFO -->
+        <div class="product-preview-info">
+            <!-- TEXT STICKER -->
+            <p class="text-sticker"><span class="highlighted">$</span> {{home?.price}}</p>
+            <!-- /TEXT STICKER -->
+
+            <!-- PRODUCT PREVIEW TITLE -->
+            <p class="product-preview-title"><a href="marketplace-product.html">{{home?.name}}</a>
+            </p>
+            <!-- /PRODUCT PREVIEW TITLE -->
+
+            <!-- PRODUCT PREVIEW CATEGORY -->
+            <p class="product-preview-category digital"><a href="marketplace-category.html">{{home?.description}}u</a>
+            </p>
+            <!-- /PRODUCT PREVIEW CATEGORY -->
+        </div>
+        <!-- /PRODUCT PREVIEW INFO -->
+    </div>
+    <!-- /PRODUCT PREVIEW -->
+</div>
+<!-- /GRID -->
